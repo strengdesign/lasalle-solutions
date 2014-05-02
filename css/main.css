@@ -746,6 +746,20 @@ img, object, embed {
 	border-color: #ef4035;
 	}
 	
+.interior {
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	padding: 9em 40px 0 40px;
+	}
+	
+.interior-content {
+	background: #fff;
+	margin: 0 auto;
+	min-width: 940px;
+	max-width: 1020px;
+	padding: 2em 3em 3em 3em;
+	}
+	
 a.login {
 	color: #fff;
 	display: inline-block;
@@ -866,7 +880,7 @@ a.login:hover {
 	display: none;
 	left: 0;
 	min-width: 100%;
-	padding: 1.25em 1em;
+	padding: 1.5em;
 	position: absolute;
 	text-align: left;
 	text-transform: none;
