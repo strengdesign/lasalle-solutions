@@ -853,12 +853,14 @@ a.login:hover {
 	}
 	
 .site-nav > ul > li {
+	background: url('/images/blank.gif'); /* thank IE for this! */
 	display: inline-block;
 	margin: 0 1.5em;
 	vertical-align: middle;
 	}
 	
 .site-nav > ul > li > a {
+	background: url('/images/blank.gif'); /* thank IE for this! */
 	color: #fff;
 	display: block;
 	font-size: 1.125em;
@@ -912,11 +914,6 @@ a.login:hover {
 	
 .site-nav > ul > li:hover .menu {
 	display: block;
-	}
-	
-	
-body:focus .site-nav > ul > li .menu {
-	display: none;
 	}
 	
 .site-nav .nav-login {
