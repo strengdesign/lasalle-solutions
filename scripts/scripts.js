@@ -17,8 +17,8 @@ $(function() {
 		$(this).toggleClass('active');
 	});
 	
-	mainNav.find('.subnav-icon').click(function() {
-		$(this).next('ul').slideToggle();
+	mainNav.find('ul .menu').closest('li').click(function() {
+		$(this).find('.menu').slideToggle();
 		$(this).toggleClass('active');
 	});
 	
