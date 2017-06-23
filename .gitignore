@@ -213,3 +213,12 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/LaSalle.Website/LaSalle.Web/App_Data/Logs
+/LaSalle.Website/LaSalle.Web/App_Data/TEMP
+/LaSalle.Website/LaSalle.Web/App_Plugins/dummy.txt
+/LaSalle.Website/LaSalle.Web/css/dummy.txt
+/LaSalle.Website/LaSalle.Web/masterpages/dummy.txt
+/LaSalle.Website/LaSalle.Web/media/dummy.txt
+/LaSalle.Website/LaSalle.Web/scripts/dummy.txt
+/LaSalle.Website/LaSalle.Web/usercontrols/dummy.txt
+/LaSalle.Website/packages
