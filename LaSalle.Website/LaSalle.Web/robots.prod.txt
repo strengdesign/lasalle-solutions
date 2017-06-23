@@ -1,0 +1,14 @@
+Sitemap: http://elasalle.com/xmlsitemap
+User-agent: *
+Disallow: /aspnet_client/
+Disallow: /App_Data/
+Disallow: /App_Plugins/
+Disallow: /bin/
+Disallow: /config/
+Disallow: /data/
+Disallow: /umbraco/
+Disallow: /umbraco_client/
+Disallow: /usercontrols/
+Disallow: /xslt/
+Disallow: /WebResource.axd
+Disallow: /ScriptResource.axd

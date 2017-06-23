@@ -255,10 +255,12 @@
   <ItemGroup>
     <Content Include="css\dummy.txt" />
     <Content Include="default.aspx" />
+    <Content Include="favicon.png" />
     <Content Include="global.asax" />
     <Content Include="masterpages\dummy.txt" />
     <Content Include="media\dummy.txt" />
     <Content Include="packages.config" />
+    <Content Include="robots.prod.txt" />
     <Content Include="robots.txt" />
     <Content Include="scripts\dummy.txt" />
     <Content Include="usercontrols\dummy.txt" />
