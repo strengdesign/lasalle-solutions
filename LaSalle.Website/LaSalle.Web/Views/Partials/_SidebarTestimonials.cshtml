@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@if(!CurrentPage.hideTestimonials) {
+	var testimonialsNode = CurrentPage.AncestorOrSelf(1).Descendants("Testimonials").First();
+	var testimonialsCollection = testimonialsNode.Descendants("Testimonial");
+	
+	var randItem = testimonialsCollection.Random();
+
+	<h3 class="mod-header">What People Are Saying About LaSalle</h3>
+	<div class="testimonial">
+		<blockquote>@randItem.testimonial</blockquote>
+		<p class="author">- @randItem.author, @randItem.company</p>
+	</div> <!-- /testimonial -->
+}

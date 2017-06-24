@@ -1,0 +1,19 @@
+﻿{
+    propertyEditors: [
+        {
+                alias: "FontIconPicker",
+                name: "Font Icon Picker",
+                editor: {
+                view: "~/App_Plugins/FontIconPicker/icon-picker.html"
+                },
+                prevalues: {
+                        fields: [
+                               
+                        ]
+                }
+        }
+    ],
+    javascript: [
+        "~/App_Plugins/FontIconPicker/icon-picker.controller.js"
+    ]
+}

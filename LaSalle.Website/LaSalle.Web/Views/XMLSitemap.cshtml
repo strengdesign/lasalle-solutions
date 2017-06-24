@@ -1,0 +1,55 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = null;
+}
+
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	
+	@{var homeNode = Umbraco.Content(1056);}
+	
+	<url>
+		<loc>@GetUrlWithDomainPrefix(homeNode.Url)</loc>
+		<lastmod>@(string.Format("{0:s}+00:00", homeNode.UpdateDate))</lastmod>
+		@if (homeNode.SearchEngineSitemapChangeFreq.ToString() != "") {
+			<changefreq>@homeNode.SearchEngineSitemapChangeFreq</changefreq>
+		}
+		@if (homeNode.SearchEngineSitemapPriority.ToString() != "") {
+			<priority>@homeNode.SearchEngineSitemapPriority</priority>
+		}
+	</url>
+	
+	@ListChildNodes(homeNode)
+	
+	@helper ListChildNodes(dynamic startNode) {
+		Response.ContentType = "text/xml";
+		const int maxLevelForSiteMap = 100;
+		
+		foreach (var node in startNode.Descendants().Where("!hideFromSiteMap && DocumentTypeAlias != @0", "MainNavPlaceholder")) {
+			<url>
+				<loc>@GetUrlWithDomainPrefix(node.Url)</loc>
+				<lastmod>@(string.Format("{0:s}+00:00", node.UpdateDate))</lastmod>
+				@if (node.SearchEngineSitemapChangeFreq.ToString() != "") {
+					<changefreq>@node.SearchEngineSitemapChangeFreq</changefreq>
+				}
+				@if (node.SearchEngineSitemapPriority.ToString() != "") {
+					<priority>@node.SearchEngineSitemapPriority</priority>
+				}
+			</url>
+		}
+	}
+</urlset>
+
+@functions {
+	private static string GetUrlWithDomainPrefix(string url) {
+		if (url.StartsWith("/"))
+			url = url.Substring(1);
+						  
+		var domainPrefix = string.Format("http://{0}/", HttpContext.Current.Request.ServerVariables["HTTP_HOST"]);
+						  
+		if (url.StartsWith(domainPrefix))
+			return url;
+		else
+			return domainPrefix + url;
+	}
+}

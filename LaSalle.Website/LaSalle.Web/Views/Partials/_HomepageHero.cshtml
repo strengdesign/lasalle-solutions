@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@if(CurrentPage.HasValue("youtubeID")) {
+	string youtubeURL = "//www.youtube.com/embed/" + @CurrentPage.youtubeID + "?autoplay=1&rel=0&hd=1&vq=hd720";
+	<a href="@youtubeURL" target="_blank" class="photo-link fancybox.iframe">
+		<img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
+	</a> <!-- /photo-link -->
+} else {
+	<img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
+}

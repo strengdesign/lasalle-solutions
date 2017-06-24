@@ -1,0 +1,9 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Tags = umbraco.cms.businesslogic.Tags;
+
+<h3 class="mod-header">Tags</h3>
+<ul class="tag-list clearfix">
+	@foreach(var testimonialTag in Tags.Tag.GetTags("testimonials").Where(x => x.NodeCount > 0).OrderByDescending(x => x.NodeCount)) {
+		<li><a href="?tag=@testimonialTag.TagCaption.ToLower()">@testimonialTag.TagCaption.ToLower()</a></li>
+	}
+</ul> <!-- /tag-list -->

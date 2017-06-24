@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Interior.cshtml";
+}
+<div class="interior-content with-rail">
+	@CurrentPage.bodyText
+	@Umbraco.RenderMacro("umbracoContour.RazorRenderForm", new {FormGuid="835cbe51-acc0-4968-946e-e33d923947ba"})
+</div> <!-- /interior-content -->
+	<div class="interior-rail">
+	@CurrentPage.topContent
+	@{Html.RenderPartial("_SidebarTestimonials");}
+	@CurrentPage.bottomContent
+</div> <!-- /interior-rail -->

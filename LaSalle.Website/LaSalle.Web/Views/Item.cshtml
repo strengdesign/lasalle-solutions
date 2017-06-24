@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Interior.cshtml";
+}
+
+<div class="interior-content with-rail">
+	<h2>@(!string.IsNullOrEmpty(CurrentPage.title) ? CurrentPage.title : CurrentPage.Name)</h2>
+	@if(!CurrentPage.hideDate) {
+		<span class="date">@String.Format("{0:D}", CurrentPage.date)</span>
+	}
+	@CurrentPage.fullstory
+</div> <!-- /interior-content -->
+
+<div class="interior-rail">
+	
+	@if(CurrentPage.HasValue("tags")) {
+		string[] tagsList = CurrentPage.tags.ToString().Split(',');
+		var totalTags = tagsList.Count();
+		var i = 0;
+		<h3 class="mod-header">Tags</h3>
+		<ul class="tag-list">
+			@foreach(var tag in tagsList) {
+				var tagFilterUrl = "/our-company/news/?tag=" + @tag.ToLower();
+				<li><a href="@tagFilterUrl" itemprop="keywords">@tag.ToLower()</a></li>
+			}
+		</ul> <!-- /tag-list -->
+	}
+	
+	@CurrentPage.sidebarContent
+	
+</div> <!-- /interior-rail -->

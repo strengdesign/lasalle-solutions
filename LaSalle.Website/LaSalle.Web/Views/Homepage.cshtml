@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Main.cshtml";
+}
+<div class="hero">
+    @{
+        Html.RenderPartial("_HomePageHero");
+        Html.RenderPartial("_HomePageIntro");
+    }
+</div> <!-- /hero -->
+@{Html.RenderPartial("_HomePageFeatures");}
+@{Html.RenderPartial("_HomePageNews");}

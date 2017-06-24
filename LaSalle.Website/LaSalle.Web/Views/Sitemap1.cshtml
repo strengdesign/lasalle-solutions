@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Interior.cshtml";
+}
+
+<div class="interior-content">
+	@CurrentPage.bodyText
+	
+	<div class="site-map">
+		@traverse(Umbraco.Content(1056))
+	</div> <!-- /site-map -->
+		
+	@helper traverse(dynamic parent) {
+	
+		<ul class="clearfix">
+	
+			@foreach(var node in parent.Children.Where("!hideFromSiteMap && DocumentTypeAlias != @0 && DocumentTypeAlias != @1", "Item", "Testimonial")) {
+				
+				var topLevelClass = node.DocumentTypeAlias == "MainNavPlaceholder" ? "class=\"category\"" : string.Empty;
+				var visibleChildren = node.Children.Where("!hideFromSiteMap && DocumentTypeAlias != @0 && DocumentTypeAlias != @1", "Item", "Testimonial");
+	
+				<li @Html.Raw(topLevelClass)>
+					@if(node.DocumentTypeAlias == "MainNavPlaceholder") {
+						<h3>@node.Name</h3>
+					} else {
+						<a href="@node.Url">@node.Name</a>
+					}
+					
+					@if(visibleChildren.Any()) {
+						@traverse(node);
+					}
+				</li>
+			
+			}
+			
+		</ul>
+		
+	}
+	
+	
+</div> <!-- /interior-content -->

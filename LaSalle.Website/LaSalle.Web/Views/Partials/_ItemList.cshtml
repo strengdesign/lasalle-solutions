@@ -1,0 +1,108 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var pagesToList = CurrentPage.Descendants("Item").OrderBy("date desc");
+	
+	var tagQuery = Request.QueryString["tag"];
+	
+	if(!string.IsNullOrEmpty(tagQuery)) {
+		pagesToList = CurrentPage.Descendants("Item").Where("tags.ToLower().Contains(@0)", tagQuery.ToLower()).OrderBy("date desc");
+	}
+	
+	var itemsPerPage = 8;
+	var numberOfItems = pagesToList.Count();
+	int currentPage = 1;
+	
+	if(!int.TryParse(HttpContext.Current.Request.QueryString["page"], out currentPage)) {
+		currentPage = 1;
+	}
+	
+	currentPage--;
+	var numberOfPages = numberOfItems % itemsPerPage == 0 ? Math.Ceiling((decimal)(numberOfItems / itemsPerPage)) : Math.Ceiling((decimal)(numberOfItems / itemsPerPage))+1;
+	
+	string currentUrl = Request.Path;
+	
+	if(!string.IsNullOrEmpty(tagQuery)) {
+		var pluralPost = numberOfItems != 1 ? "items" : "item";
+		<h2 class="search-result">@numberOfItems @pluralPost tagged with <span>"@tagQuery"</span> <a href="@currentUrl" class="clear-filter"><i class="icon-close"></i> Clear filter</a></h2>
+	}
+	
+}
+
+@foreach(var listItem in pagesToList.Skip(currentPage*itemsPerPage).Take(itemsPerPage)) {
+	string itemTitle = !listItem.IsNull("title") ? listItem.title : listItem.Name;
+	string col2Class = string.Empty;
+	string buttonTitle = !listItem.IsNull("buttonTitle") ? listItem.buttonTitle : "Read More";
+	string itemUrl = string.Empty;
+	string newWindow = string.Empty;
+	
+	if(!listItem.IsNull("redirectUrl")) {
+		itemUrl = listItem.redirectUrl;
+		newWindow = "target=\"_blank\"";
+	} else {
+		itemUrl = listItem. Url;
+	}
+	
+	<div class="list-item clearfix">
+		@if(!listItem.IsNull("featuredImage")) {
+			col2Class = "class=\"item-info\"";
+			<div class="thumbnail">
+				<img src="@Umbraco.Media(listItem.featuredImage).umbracoFile?width=100&amp;height=100&amp;mode=max&amp;upscale=false" alt="@itemTitle" class="photo">
+			</div>
+		}
+		<div @Html.Raw(col2Class)>
+			<h3>
+				@if(listItem.disableLink) {
+					@itemTitle
+				} else {
+					<a href="@itemUrl" @Html.Raw(newWindow)>@itemTitle</a>
+				}
+			</h3>
+			@if(!listItem.hideDate) {
+				<span class="date">@String.Format("{0:D}", listItem.date)</span>
+			}
+			@if(!listItem.IsNull("teaser")) {
+				@listItem.teaser
+			}
+			@if(!listItem.disableLink) {
+				<a href="@itemUrl" class="more"@Html.Raw(newWindow)>@buttonTitle</a>
+			}
+		</div> <!-- /item-info -->
+	</div> <!-- /list-item -->
+}
+
+@if(numberOfPages > 1) {
+	string queryString = string.Empty;
+	if(!string.IsNullOrEmpty(tagQuery)) {
+		queryString = "&tag=" + tagQuery;
+	}
+	<div class="pagination">
+		<ul class="clearfix">
+
+			@{
+				if(currentPage > 0) {
+					<li class="arrow"><a href="?page=@(currentPage + queryString)" title="Previous"><i class="icon-arrow-left"></i></a></li>
+				} else {
+					<li class="arrow disabled"><i class="icon-arrow-left"></i></li>
+				}
+			
+				var Pages = Enumerable.Range(1, (int)numberOfPages);
+			
+				foreach(var number in Pages) {
+					if(number-1 != currentPage) {
+						<li><a href="?page=@(number + queryString)">@number</a></li>
+					} else {
+						<li class="active">@number</li>
+					}
+				}
+				
+				if(currentPage < Pages.Count()-1) {
+					<li class="arrow"><a href="?page=@((currentPage+2) + queryString)" title="Next"><i class="icon-arrow-right"></i></a></li>
+				} else {
+					<li class="arrow disabled"><i class="icon-arrow-right"></i></li>
+				}
+			}
+			
+		</ul>
+	</div> <!-- /pagination -->
+}

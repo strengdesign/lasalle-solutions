@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	List<String> itemTags = new List<String>();
+	string[] tagsList;
+	
+	foreach(var listItem in CurrentPage.Descendants("Item")) {
+		
+		tagsList = listItem.tags.ToString().Split(',');
+		
+		foreach(var itemTag in tagsList) {
+			itemTags.Add(itemTag);
+		}
+		
+	}
+}
+
+<h3 class="mod-header">Tags</h3>
+<ul class="tag-list clearfix">
+	@foreach(var uniqueTag in itemTags.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct()) {
+		<li><a href="?tag=@uniqueTag.ToLower()">@uniqueTag.ToLower()</a></li>
+	}
+</ul> <!-- /tag-list -->

@@ -1,0 +1,46 @@
+﻿<div ng-controller="u7dtg.editorController">
+
+
+	<div ng-repeat="row in model.value" class="dtg-row">
+	
+		<div class="dtg-header">
+			<span ng-click="moveUp($index)" title="Move Up" class="btn btn-default icon icon-arrow-up"></span>
+			<span ng-click="moveDown($index)" title="Move Down" class="btn btn-default icon icon-arrow-down"></span>
+			<span ng-click="removeRow($index)" title="Delete" class="btn btn-danger icon icon-trash"></span>
+		</div>
+		
+		<div ng-repeat="property in propertiesOrder" class="dtg-property clearfix">
+			<label class="dtg-label">{{model.config.columns.columns[$index].title}}</label>
+			<div class="dtg-editor">
+				<ng-include src="'/app_plugins/u7dtg/propertiesViews/'+model.config.columns.columns[$index].type+'.html'"></ng-include>
+			</div>
+		</div>
+
+	</div>
+
+    <button type="button" class="btn btn-default" ng-click="addRow()">Add row</button>
+	
+	
+	
+	<div u7dt-rte class="modal hide fade" id="{{model.alias}}rteditorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">{{selectedEditorTitle}}</h4>
+		  </div>
+		  <div class="modal-body">
+			  <div ng-show="selectedEditorIndex == $index"  ng-repeat="editor in rtEditors">
+					<umb-editor model="editor" ></umb-editor>
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
+
+</div>

@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var pagesToList = CurrentPage.Descendants("Testimonial");
+	var tagQuery = Request.QueryString["tag"];
+	
+	if(!string.IsNullOrEmpty(tagQuery)) {
+		pagesToList = pagesToList.Where("tags.ToLower().Contains(@0)", tagQuery.ToLower());
+	}
+	
+	var numberOfItems = pagesToList.Count();
+	string currentUrl = Request.Path;
+	
+	if(!string.IsNullOrEmpty(tagQuery)) {
+		var pluralPost = numberOfItems != 1 ? "testimonials" : "testimonial";
+		<h2 class="search-result">@numberOfItems @pluralPost tagged with <span>"@tagQuery"</span> <a href="@currentUrl" class="clear-filter"><i class="icon-close"></i> Clear filter</a></h2>
+	}
+}
+
+<div class="testimonials">
+	@foreach(var testimonial in pagesToList) {
+		<div class="testimonial">
+			<blockquote>@testimonial.testimonial</blockquote>
+			<p class="author">@testimonial.author, @testimonial.company</p>
+		</div> <!-- /testimonial -->
+	}
+</div> <!-- /testimonials -->

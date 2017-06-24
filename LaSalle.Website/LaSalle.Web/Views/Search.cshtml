@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Interior.cshtml";
+}
+
+<div class="interior-content">
+	@CurrentPage.bodyText
+	@Umbraco.RenderMacro("ezSearch", new {rootContentNodeId="1056", rootMediaNodeId="null", indexType="CONTENT", searchFields="nodeName,pageTitle,title,metaDescription,metaKeywords,bodyText", previewFields="metaDescription,bodyText", previewLength="null", pageSize="null", hideFromSearchField="null", searchFormLocation="NONE"})
+</div> <!-- /interior-content -->

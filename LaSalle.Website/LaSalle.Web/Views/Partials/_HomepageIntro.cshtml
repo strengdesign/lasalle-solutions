@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<div class="content">
+	@if(CurrentPage.HasValue("introSubTitle")) {
+		<h3>@CurrentPage.introSubTitle</h3>
+	}
+	@if(CurrentPage.HasValue("introTitle")) {
+		<h2>@Html.Raw(CurrentPage.introTitle)</h2>
+	}
+	@if(CurrentPage.HasValue("introCopy")) {
+		<p>@CurrentPage.introCopy</p>
+	}
+	@if(CurrentPage.HasValue("introButtonLink")) {
+		string buttonTitle = CurrentPage.HasValue("introButtonTitle") ? CurrentPage.introButtonTitle : "Learn More";
+		<a href="@Umbraco.Content(CurrentPage.introButtonLink).Url" class="btn">@buttonTitle</a>
+	}
+</div> <!-- /content -->

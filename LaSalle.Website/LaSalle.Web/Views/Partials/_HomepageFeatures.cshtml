@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<div class="hp-features cols-@CurrentPage.homePageFeatures.Count">
+	@foreach (var hpFeature in CurrentPage.homePageFeatures) {
+		<div class="feature">
+			@if(!string.IsNullOrEmpty(hpFeature.icon.ToString())) {
+				<i class="@hpFeature.icon"></i>
+			}
+			
+			@if(!string.IsNullOrEmpty(hpFeature.title.ToString())) {
+				<h2>@hpFeature.title</h2>
+			}
+			
+			@if(!string.IsNullOrEmpty(hpFeature.shortDescription.ToString())) {
+				<p>@hpFeature.shortDescription</p>
+			}
+			
+			@if(!string.IsNullOrEmpty(hpFeature.buttonLink.ToString())) {
+				string buttonTitle = !string.IsNullOrEmpty(hpFeature.buttonTitle.ToString()) ? hpFeature.buttonTitle : "Learn More";
+				<a href="@Umbraco.Content(Convert.ToInt32(hpFeature.buttonLink)).Url" class="btn">@buttonTitle</a>
+			}
+			
+		</div> <!-- /feature -->
+	}
+</div> <!-- /hp-features -->

@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Main.cshtml";
+	string pageTitle = string.Empty;
+	if(CurrentPage.DocumentTypeAlias == "Item") {
+		pageTitle = CurrentPage.Parent.Name;
+	} else {
+		pageTitle = !string.IsNullOrEmpty(CurrentPage.title) ? CurrentPage.title : CurrentPage.Name;
+	}
+}
+
+<div class="interior" style="background-image: url('/media/1002/default.jpg');">
+	<div class="interior-shadow clearfix">
+		<div class="page-header clearfix">
+			<h1>@pageTitle</h1>
+			@{Html.RenderPartial("_InteriorBreadcrumbs");}
+		</div> <!-- /page-header -->
+		
+		@RenderBody()
+		
+	</div> <!-- /interior-shadow -->
+</div> <!-- /interior -->
+@section ExtraScripts{
+@RenderSection("ExtraScripts", false)
+}
