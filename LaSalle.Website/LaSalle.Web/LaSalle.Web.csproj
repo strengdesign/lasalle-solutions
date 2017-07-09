@@ -84,6 +84,10 @@
       <HintPath>..\packages\Examine.0.1.83\lib\net45\Examine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FALM.Housekeeping, Version=7.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\FALM.Housekeeping.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.5.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -372,6 +376,45 @@
     <Content Include="App_Plugins\DiploTraceLogViewer\backoffice\diplotracelog\plugins\smart-table.min.js" />
     <Content Include="App_Plugins\DiploTraceLogViewer\backoffice\diplotracelog\tracelog3.css" />
     <Content Include="App_Plugins\DiploTraceLogViewer\readme.txt" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\edit.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\logs.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\logs.modals.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\media.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\users.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\versions.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\controller\versions.modals.controller.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\css\bootstrap-datepicker\bootstrap-datepicker3.min.css" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\css\fhbootstrap.css" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\css\fhstyle.css" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\css\img\searching.gif" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\dashboard.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\directive\logs.directive.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\directive\media.directive.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\directive\users.directive.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\directive\versions.directive.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\edit.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\edittl.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\resource\logs.resource.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\resource\media.resource.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\resource\users.resource.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\resource\versions.resource.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\scripts\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\scripts\dirPagination.js" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\template\dirPagination.tpl.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\logs-dbmanager-modal-details.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\logs-dbmanager.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\logs-tlmanager-modal-details.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\logs-tlmanager.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\media-cleanup.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\users-cleanup.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\versions-manager-modal-cleanupbycount.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\versions-manager-modal-details.html" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\view\versions-manager.html" />
+    <Content Include="App_Plugins\FALM\housekeeping.resource.js" />
+    <Content Include="App_Plugins\FALM\lang\en-GB.xml" />
+    <Content Include="App_Plugins\FALM\lang\en-US.xml" />
+    <Content Include="App_Plugins\FALM\lang\it-IT.xml" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.controller.js" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.css" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.html" />
@@ -484,6 +527,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\logos\lamp.png" />
     <Content Include="Lib\Diplo.TraceLogViewer.dll" />
+    <Content Include="Lib\FALM.Housekeeping.dll" />
     <Content Include="Lib\NPoco.dll" />
     <Content Include="Lib\Our.Umbraco.ezSearch.dll" />
     <Content Include="Lib\Umbraco.Forms.CodeFirst.dll" />
@@ -3779,7 +3823,9 @@
     <Content Include="App_Browsers\w3cvalidator.browser" />
     <Content Include="App_Data\access.config" />
     <Content Include="App_Data\packages\created\createdPackages.config" />
-    <Content Include="App_Data\packages\installed\installedPackages.config" />
+    <Content Include="App_Data\packages\installed\installedPackages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\umbraco.config" />
     <Content Include="App_Plugins\Contour\package.manifest" />
     <Content Include="App_Plugins\FontIconPicker\package.manifest" />
@@ -5111,6 +5157,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\DiploTraceLogViewer\package.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\css\bootstrap-datepicker\bootstrap-datepicker3.min.css.map" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="App_Plugins\FALM\package.manifest" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
