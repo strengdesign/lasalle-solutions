@@ -17,19 +17,19 @@
 /**
 * Version 1.7.1
 *
-* ** means there is basic unit tests for this parameter. 
+* ** means there is basic unit tests for this parameter.
 *
 * @name  Jeditable
 * @type  jQuery
 * @param String  target             (POST) URL or function to send edited content to **
-* @param Hash    options            additional options 
+* @param Hash    options            additional options
 * @param String  options[method]    method to use to send edited content (POST or PUT) **
 * @param Function options[callback] Function to run after submitting edited content **
 * @param String  options[name]      POST parameter name of edited content
 * @param String  options[id]        POST parameter name of edited div id
 * @param Hash    options[submitdata] Extra parameters to send when submitting edited content.
 * @param String  options[type]      text, textarea or select (or any 3rd party input type) **
-* @param Integer options[rows]      number of rows if using textarea ** 
+* @param Integer options[rows]      number of rows if using textarea **
 * @param Integer options[cols]      number of columns if using textarea **
 * @param Mixed   options[height]    'auto', 'none' or height in pixels **
 * @param Mixed   options[width]     'auto', 'none' or width in pixels **
@@ -48,13 +48,13 @@
 * @param String  options[select]    true or false, when true text is highlighted ??
 * @param String  options[placeholder] Placeholder text or html to insert when element is empty. **
 * @param String  options[onblur]    'cancel', 'submit', 'ignore' or function ??
-*             
+*
 * @param Function options[onsubmit] function(settings, original) { ... } called before submit
 * @param Function options[onreset]  function(settings, original) { ... } called before reset
 * @param Function options[onerror]  function(settings, original, xhr) { ... } called on error
-*             
+*
 * @param Hash    options[ajaxoptions]  jQuery Ajax options. See docs.jquery.com.
-*             
+*
 */
 
 (function ($) {
@@ -270,6 +270,7 @@
                 /* do nothing is usable when navigating with tab */
                 var t;
                 if ('cancel' == settings.onblur) {
+
                     input.blur(function (e) {
                         /* prevent canceling if submit was clicked */
                         t = setTimeout(function () {
@@ -277,6 +278,7 @@
                         }, 500);
                     });
                 } else if ('submit' == settings.onblur) {
+                    $("#editprevaluesbtn").attr("disabled", "disabled");
                     input.blur(function (e) {
                         /* prevent double submit if submit was clicked */
                         t = setTimeout(function () {
@@ -284,6 +286,7 @@
                         }, 200);
                     });
                 } else if ($.isFunction(settings.onblur)) {
+
                     input.blur(function (e) {
                         settings.onblur.apply(self, [input.val(), settings]);
                     });
@@ -294,7 +297,7 @@
                 }
 
                 form.submit(function (e) {
-
+                    $("#editprevaluesbtn").removeAttr("disabled");
                     if (t) {
                         clearTimeout(t);
                     }

@@ -3,6 +3,8 @@
 <%@ Register Namespace="umbraco.uicontrols" Assembly="controls" TagPrefix="umb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
 
 <link href="../../../umbraco_client/GenericProperty/genericproperty.css" type="text/css" rel="stylesheet">
 

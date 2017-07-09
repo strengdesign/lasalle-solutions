@@ -279,7 +279,7 @@
                                                         <asp:Label ID="lblFieldMandatory" runat="server" Text="" CssClass="mandatory"></asp:Label>
                                                     </label>
                                                     <div class="fieldControl">
-                                                        <%# RenderFieldPreview(((Umbraco.Forms.Core.Field)Container.DataItem)) %>
+                                                        <%# Container.DataItem != null ? RenderFieldPreview(((Umbraco.Forms.Core.Field)Container.DataItem)) : "" %>
                                                         <div class="fieldeditprevalues" <%# PreValueEdit(((Umbraco.Forms.Core.Field)Container.DataItem)) %>>
                                                             <a href="#" onclick="javascript:ShowUpdatePrevaluesDialog('<%# ((Umbraco.Forms.Core.Field)Container.DataItem).Id %>')">
                                                                 Edit items</a>
@@ -590,7 +590,7 @@
                 <a href="#" id="editaddprevalue">add value</a>
             </p>
             <p>
-                <input class="submit btn" type="submit" value="Update items" />
+                <input class="submit btn" type="submit" value="Update items" id="editprevaluesbtn"/>
                 <a href="#" class="CancelModal" id="cancelprevalueaction">cancel</a>
             </p>
         </fieldset>

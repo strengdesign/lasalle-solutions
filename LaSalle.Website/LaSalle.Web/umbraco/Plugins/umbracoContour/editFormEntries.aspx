@@ -3,12 +3,12 @@
 
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
       
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
+
+
       <link rel="Stylesheet" href="css/datatables.css" type="text/css" />
       <script src="scripts/jquery.datatables.js" type="text/javascript"></script>
-      <script src="scripts/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
-      <script src="scripts/TableTools.js" type="text/javascript" charset="utf-8"></script>
       <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="css/TableTools.css" type="text/css" media="screen" />
 
       <script type="text/javascript">
              var webserviceUrl = "webservices/records.aspx?guid=<%= formGuid %>";
@@ -24,10 +24,6 @@
 
              $(document).ready(function() {
                 
-
-
-                TableToolsInit.sSwfPath = "/umbraco/plugins/umbracoContour/scripts/ZeroClipboard.swf";
-
 				otable = $(tableName).dataTable( {
 				    "sPaginationType": "full_numbers",
                     "bStateSave": true,
@@ -57,7 +53,7 @@
                     }
                 });
                 
-              $('#recordContextMenu li').hover(function() {
+              $('#recordContextMenu li').hover(function() { 
 
                     $(this).addClass('activemenuitem');
 

@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="ui" Namespace="umbraco.uicontrols" Assembly="controls" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
 
  <style type="text/css">
         .formselectpane

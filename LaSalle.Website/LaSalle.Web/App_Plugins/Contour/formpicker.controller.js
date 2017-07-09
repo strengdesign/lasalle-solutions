@@ -12,4 +12,8 @@
                     $scope.error = "An Error has occured while loading!";
                     $scope.loading = false;
                 });
+
+            $scope.clear = function () {
+                $scope.model.value = null;
+            }
         });

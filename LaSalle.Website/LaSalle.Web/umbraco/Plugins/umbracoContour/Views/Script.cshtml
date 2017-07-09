@@ -5,13 +5,13 @@
 @using Umbraco.Forms.MVC.Extensions
 @using Umbraco.Forms.Core.Extensions
                       
-   <script type="text/javascript">
+    <script type="text/javascript">
        var contourDateFormat = "@Html.ConvertDateFormat()";
-    </script> 
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" type="text/javascript"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
     <script src="@Url.Content("~/umbraco/plugins/umbracocontour/scripts/frontend/contourform.js")" type="text/javascript"></script>
     <script type="text/javascript">
         var contourFieldValues@{@Model.FormClientId};
@@ -132,7 +132,7 @@
                                         <text>parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) > parseInt("@r.Value")</text>
                                             break;
                                         case FieldConditionRuleOperator.LessThen:
-                                        <text>parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) < parseInt("@r.Value")</text>
+                                        <text>parseInt("@r.Value") > parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) </text>
                                             break;
                                         case FieldConditionRuleOperator.Contains:
                                         <text>contourFieldValues@{@Model.FormClientId}["@r.Field"].indexOf("@Html.Raw(r.Value.ParsePlaceHolders())") != -1</text>
@@ -180,7 +180,7 @@
                                         <text>parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) > parseInt("@r.Value")</text>
                                         break;
                                     case FieldConditionRuleOperator.LessThen:
-                                        <text>parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) < parseInt("@r.Value")</text>
+                                        <text>parseInt("@r.Value") > parseInt(contourFieldValues@{@Model.FormClientId}["@r.Field"]) </text>
                                         break;
                                     case FieldConditionRuleOperator.Contains:
                                         <text>contourFieldValues@{@Model.FormClientId}["@r.Field"].indexOf("@Html.Raw(r.Value.ParsePlaceHolders())") != -1</text>

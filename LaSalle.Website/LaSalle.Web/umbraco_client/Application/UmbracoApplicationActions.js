@@ -281,7 +281,7 @@ Umbraco.Application.Actions = function() {
         actionRePublish: function() {
             /// <summary></summary>
 
-            UmbClientMgr.openModalWindow('dialogs/republish.aspx?rnd=' + this._utils.generateRandom(), 'Republishing entire site', true, 450, 210);
+            UmbClientMgr.openModalWindow('dialogs/republish.aspx?rnd=' + this._utils.generateRandom(), uiKeys['actions_republish'], true, 450, 210);
         },
 
         actionAssignDomain: function() {
@@ -409,7 +409,7 @@ Umbraco.Application.Actions = function() {
                             _this._debug("actionDelete: Raising public error event");
                             //raise public error event
                             jQuery(window.top).trigger("publicError", [error]);
-                        })
+                        });
                 }
             }
 

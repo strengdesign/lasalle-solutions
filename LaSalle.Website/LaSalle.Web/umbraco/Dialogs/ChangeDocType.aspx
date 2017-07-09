@@ -51,7 +51,7 @@
         </cc1:PropertyPanel>
 
         <asp:PlaceHolder ID="NotAvailablePlaceholder" runat="server" Visible="false">        
-            <div class="propertyItem notice" style="padding: 10px">     
+            <div class="propertyItem notice" style="padding-top: 10px">     
                 <p><%=umbraco.ui.Text("changeDocType", "docTypeCannotBeChanged") %></p>
             </div>
         </asp:PlaceHolder>
@@ -91,15 +91,14 @@
     </cc1:Pane>
 
     <asp:PlaceHolder ID="SuccessPlaceholder" runat="server" Visible="false">
-        <h2 class="propertypaneTitel"><%=umbraco.ui.Text("changeDocType", "docTypeChanged") %></h2>
-        <br />
-        <div class="success" style="padding: 10px">        
+        <p><%=umbraco.ui.Text("changeDocType", "docTypeChanged") %></p>
+        <p>        
             <asp:Literal ID="SuccessMessage" runat="server" />
             <asp:Literal ID="PropertiesMappedMessage" runat="server" />
             <asp:Literal ID="ContentPublishedMessage" runat="server" />
             <br /><br />
             <a href="#" style="color: blue" onclick="UmbClientMgr.closeModalWindow()"><%=umbraco.ui.Text("defaultdialogs", "closeThisWindow") %></a>  
-        </div>
+        </p>
     </asp:PlaceHolder>
 
     <asp:PlaceHolder ID="ValidationPlaceholder" runat="server" Visible="false">
@@ -109,16 +108,14 @@
         </div>
     </asp:PlaceHolder>
 
-    <asp:PlaceHolder ID="SaveAndCancelPlaceholder" runat="server">
-        <br />
-        <p>
+    <div class="btn-toolbar umb-btn-toolbar">
+        <asp:PlaceHolder ID="SaveAndCancelPlaceholder" runat="server">
+            <a href="#" class="btn btn-link" onclick="UmbClientMgr.closeModalWindow()"><%=umbraco.ui.Text("cancel")%></a>
             <asp:PlaceHolder ID="SavePlaceholder" runat="server">        
-                <asp:Button ID="ValidateAndSave" runat="server" OnClick="ValidateAndSave_Click" />
-                <em> <%= umbraco.ui.Text("or") %> </em>
-            </asp:PlaceHolder>        
-            <a href="#" style="color: blue" onclick="UmbClientMgr.closeModalWindow()"><%=umbraco.ui.Text("general", "cancel", this.getUser())%></a>  
-        </p>
-    </asp:PlaceHolder>
-  
+                <asp:Button ID="ValidateAndSave" runat="server" CssClass="btn btn-primary" Text="Create" OnClick="ValidateAndSave_Click"></asp:Button>
+            </asp:PlaceHolder>
+        </asp:Placeholder>
+    </div>
+     
 </asp:Content>
   

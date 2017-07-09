@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
 
 <script type="text/javascript">
 <!--

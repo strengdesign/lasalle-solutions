@@ -5,7 +5,6 @@
 *.pydevproject
 .project
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -47,7 +46,6 @@ local.properties
 [Rr]elease/
 x64/
 build/
-[Bb]in/
 [Oo]bj/
 
 # MSTest test Results
@@ -222,3 +220,10 @@ pip-log.txt
 /LaSalle.Website/LaSalle.Web/scripts/dummy.txt
 /LaSalle.Website/LaSalle.Web/usercontrols/dummy.txt
 /LaSalle.Website/packages
+/LaSalle.Website/LaSalle.Web/App_Data/cache
+/LaSalle.Website/LaSalle.Web/App_Data/umbraco.licensing.log.txt
+/LaSalle.Website/LaSalle.Web/App_Data/NuGetBackup/
+/LaSalle.Website/LaSalle.Web/[Bb]in/roslyn
+/LaSalle.Website/LaSalle.Web/[Bb]in/*.dll
+/LaSalle.Website/LaSalle.Web/[Bb]in/*.xml
+/LaSalle.Website/LaSalle.Web/[Bb]in/*.config

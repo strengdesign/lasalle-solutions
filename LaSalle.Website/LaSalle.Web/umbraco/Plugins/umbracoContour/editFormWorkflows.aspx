@@ -7,6 +7,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
    
@@ -19,6 +21,10 @@
  .workflowname
  {
  	float:left;
+ }
+ #simplemodal-container {
+    height: 650px;
+	width: 750px;
  }
 </style>
 
@@ -105,7 +111,7 @@ function AddNewWorkFlowToUI(state, name, guid, active) {
 
 function ShowUpdateWorkFlowDialog(wfguid, state) {
     var src = "editWorkflowDialog.aspx?guid=" + wfguid + "&state=" + state + "&form=<%= Request["guid"] %>";
-    $.modal('<iframe src="' + src + '" height="400" width="600" style="border:0">');
+    $.modal('<iframe src="' + src + '" height="650" width="750" style="border:0">');
 }
 
 function CloseUpdateWorkFlowDialog(updated,id,name,active) {

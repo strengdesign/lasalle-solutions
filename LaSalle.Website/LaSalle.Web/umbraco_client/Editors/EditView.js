@@ -8,21 +8,6 @@
         //private methods/variables
         _opts: null,
 
-        _updateNewFileProperties: function(filePath) {
-            /// <summary>Updates the current treeSyncPath and original file name to have the new file name</summary>
-            
-            //update the originalFileName prop
-            this._opts.originalFileName = filePath;
-
-            //re-create the new path
-            var subPath = this._opts.treeSyncPath.split(",");
-            //remove the last element
-            subPath.pop();
-            //add the new element
-            subPath.push(filePath.split("/")[1]);
-            this._opts.treeSyncPath = subPath.join();
-        },
-
         // Constructor
         constructor: function (opts) {
             // Merge options with default
@@ -48,26 +33,88 @@
 
         insertMacroMarkup: function(alias) {
             /// <summary>callback used to insert the markup for a macro with no parameters</summary>
-            
+
             UmbEditor.Insert("@Umbraco.RenderMacro(\"" + alias + "\")", "", this._opts.codeEditorElementId);
         },
-        
+
+        insertRenderBody: function() {
+            UmbEditor.Insert("@RenderBody()", "", this._opts.codeEditorElementId);
+        },
+
         openMacroModal: function (alias) {
             /// <summary>callback used to display the modal dialog to insert a macro with parameters</summary>
-            
+
             var self = this;
 
             UmbClientMgr.openAngularModalWindow({
                 template: "views/common/dialogs/insertmacro.html",
                 dialogData: {
                     renderingEngine: "Mvc",
-                    selectedAlias: alias
+                    macroData: {macroAlias: alias}
                 },
                 callback: function (data) {
                     UmbEditor.Insert(data.syntax, '', self._opts.codeEditorElementId);
                 }
             });
         },
+
+        openSnippetModal: function (type) {
+            /// <summary>callback used to display the modal dialog to insert a macro with parameters</summary>
+
+            var self = this;
+
+            UmbClientMgr.openAngularModalWindow({
+                template: "views/common/dialogs/template/snippet.html",
+                callback: function (data) {
+
+                    var code = "";
+
+                    if (type === 'section') {
+                        code = "\n@section " + data.name + "{\n";
+                        code += "<!-- Content here -->\n" +
+                            "}\n";
+                    }
+
+                    if (type === 'rendersection') {
+                        if (data.required) {
+                            code = "\n@RenderSection(\"" + data.name + "\", true)\n";
+                        } else {
+                            code = "\n@RenderSection(\"" + data.name + "\", false)\n";
+                        }
+                    }
+
+                    UmbEditor.Insert(code, '', self._opts.codeEditorElementId);
+                },
+                type: type
+            });
+        },
+
+
+        openQueryModal: function () {
+            /// <summary>callback used to display the modal dialog to insert a macro with parameters</summary>
+
+            var self = this;
+
+            UmbClientMgr.openAngularModalWindow({
+                template: "views/common/dialogs/template/queryBuilder.html",
+                callback: function (data) {
+
+                    //var dataFormatted = data.replace(new RegExp('[' + "." + ']', 'g'), "\n\t\t\t\t\t.");
+
+                    var code = "\n@{\n" + "\tvar selection = " + data + ";\n}\n";
+                    code += "<ul>\n" +
+                                "\t@foreach(var item in selection){\n" +
+                                    "\t\t<li>\n" +
+                                        "\t\t\t<a href=\"@item.Url\">@item.Name</a>\n" +
+                                    "\t\t</li>\n" +
+                                "\t}\n" +
+                            "</ul>\n\n";
+
+                    UmbEditor.Insert(code, '', self._opts.codeEditorElementId);
+                }
+            });
+        },
+
 
         doSubmit: function () {
             /// <summary>Submits the data to the server for saving</summary>
@@ -94,9 +141,10 @@
                     });
             }
             else {
-                //saving a partial view    
+                //saving a partial view
+                var actionName = this._opts.editorType === "PartialViewMacro" ? "SavePartialViewMacro" : "SavePartialView";
 
-                $.post(self._opts.restServiceLocation + "SavePartialView",
+                $.post(self._opts.restServiceLocation + actionName,
                     JSON.stringify({
                         filename: this._opts.nameTxtBox.val(),
                         oldName: this._opts.originalFileName,
@@ -111,9 +159,9 @@
                     });
             }
         },
-        
+
         submitSuccess: function (args) {
-            
+
             var msg = args.message;
             var header = args.header;
             var path = this._opts.treeSyncPath;
@@ -124,10 +172,19 @@
                 }
                 path = args.path;
             }
+            if (args.contents) {
+                UmbEditor.SetCode(args.contents);
+            } else if (!this.IsSimpleEditor) {
+                // Restore focuse to text region. SetCode also does this.
+                UmbEditor._editor.focus();
+            }
 
             UmbClientMgr.mainTree().setActiveTreeType(this._opts.currentTreeType);
 
             if (this._opts.editorType == "Template") {
+
+                var alias = args.alias;
+                this._opts.aliasTxtBox.val(alias);
 
                 top.UmbSpeechBubble.ShowMessage('save', header, msg);
 
@@ -140,12 +197,12 @@
                 else {
                     UmbClientMgr.mainTree().syncTree(path, true);
                 }
-                
+
             }
             else {
                 var newFilePath = this._opts.nameTxtBox.val();
 
-               
+
                 function trimStart(str, trim) {
                     if (str.startsWith(trim)) {
                         return str.substring(trim.length);
@@ -165,27 +222,31 @@
                     var newLocation = window.location.pathname + "?" + notFileParts.join("&") + "&file=" + newFilePath;
 
                     UmbClientMgr.contentFrame(newLocation);
-                    
+
                     //we need to do this after we navigate otherwise the navigation will wait unti lthe message timeout is done!
                     top.UmbSpeechBubble.ShowMessage('save', header, msg);
                 }
                 else {
-                    
+
                     top.UmbSpeechBubble.ShowMessage('save', header, msg);
 
-                    //then we need to update our current tree sync path to represent the new one
-                    this._updateNewFileProperties(newFilePath);
+                    if (args && args.name) {
+                        this._opts.originalFileName = args.name;
+                    }
+                    if (args && args.path) {
+                        this._opts.treeSyncPath = args.path;
+                    }
 
                     UmbClientMgr.mainTree().syncTree(path, true, null, newFilePath.split("/")[1]);
-                }                
+                }
             }
-            
+
         },
-        
+
         submitFailure: function (err, header) {
-            top.UmbSpeechBubble.ShowMessage('error', header, err);                       
+            top.UmbSpeechBubble.ShowMessage('error', header, err);
         },
-        
+
         changeMasterPageFile: function ( ) {
             //var editor = document.getElementById(this._opts.sourceEditorId);
             var templateDropDown = this._opts.masterPageDropDown.get(0);
@@ -221,7 +282,7 @@
     $.ajaxSetup({
         dataType: 'json',
         cache: false,
-        contentType: 'application/json; charset=utf-8'        
+        contentType: 'application/json; charset=utf-8'
     });
 
 })(jQuery);

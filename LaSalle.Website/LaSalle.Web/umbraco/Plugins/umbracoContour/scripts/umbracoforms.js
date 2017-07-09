@@ -792,7 +792,7 @@ function ShowAddFieldDialog(fieldset) {
 	//$('#fieldtype').selectedIndex = -1;
     
 	//$("#fieldtype option:first").attr('selected', 'selected');
-	$("#fieldtype option:[value='3f92e01b-29e2-4a30-bf33-9df5580ed52c']").attr('selected', 'selected');
+	$("#fieldtype option[value='3f92e01b-29e2-4a30-bf33-9df5580ed52c']").attr('selected', 'selected');
 
     //show fieldtype specific settings
 	ShowFieldTypeSpecificSettings('3f92e01b-29e2-4a30-bf33-9df5580ed52c');
@@ -846,8 +846,8 @@ function ShowAddFieldDialog(fieldset) {
 	});
 
 	$("#fieldenableconditions").attr('checked', false);
-	$("#fieldconditionactiontype option:[value='0']").attr('selected', 'selected');
-	$("#fieldconditionlogictype option:[value='0']").attr('selected', 'selected');
+	$("#fieldconditionactiontype option[value='0']").attr('selected', 'selected');
+	$("#fieldconditionlogictype option[value='0']").attr('selected', 'selected');
 	$("#fieldruleadd").val($("#fieldruleadd option:first").val());
 	$("#fieldruleaddoperator").val($("#fieldruleaddoperator option:first").val());
     $("#fieldruleaddvalue").val("");
@@ -1625,9 +1625,9 @@ function ShowFieldTypeSpecificSettings(fieldtype) {
     //clear values
     $("#ftSettingsContainer" + fieldtype + " .ftAdditionalSetting .formControl").each(function () {
 
-        var tagname = $('":first-child', this).tagName().toLowerCase();
+        var tagname = $(':first-child', this).tagName().toLowerCase();
 
-
+       
         switch (tagname) {
             case "input":
                 if ($('input', this).attr('type') == 'text') {
@@ -1637,6 +1637,9 @@ function ShowFieldTypeSpecificSettings(fieldtype) {
                 if ($('input', this).attr('type') == 'checkbox') {
                     $('input', this).attr('checked', false);
                 }
+                break;
+            case "select":
+                $('select', this).prop('selectedIndex', 0);
                 break;
             case "span":
 
@@ -1653,7 +1656,7 @@ function ShowFieldTypeSpecificSettings(fieldtype) {
                 
                 break;
             default:
-                try { $('":first-child', this).val(''); } catch (err) { }
+                try { $(':first-child', this).val(''); } catch (err) { }
         }
 
     });
@@ -1669,7 +1672,7 @@ function LoadAdditionalSettings(field) {
     $("#" + field + " .fieldadditionalsettings").children().each(function () {
 
 
-        SetInputValue($(":first-child", "#fieldadditionalsettings .ftAdditionalSetting:[rel=" + $(this).attr('rel') + "] .formControl"), $(this).html());
+        SetInputValue($(":first-child", "#fieldadditionalsettings .ftAdditionalSetting[rel=" + $(this).attr('rel') + "] .formControl"), $(this).html());
     });
 }
 
@@ -1692,7 +1695,7 @@ function SetInputValue(input, value) {
             }
             break;
         case "select":
-                input.val(value);
+            $('option[value="' + value + '"]', input).attr("selected", "selected");
             break;
         case "span":
            
@@ -1730,14 +1733,14 @@ function SetInputValue(input, value) {
 
 function clearPickerValue(pickerClientId) {
 
-    if (Umbraco.Controls.TreePicker.inst[pickerClientId] != null) {
+    if (Umbraco.Controls.TreePicker != null && Umbraco.Controls.TreePicker.inst[pickerClientId] != null) {
         Umbraco.Controls.TreePicker.inst[pickerClientId].ClearSelection();
     }
 }
 
 function setPickerValue(pickerClientId, value) {
 
-    if (Umbraco.Controls.TreePicker.inst[pickerClientId] != null) {
+    if (Umbraco.Controls.TreePicker != null && Umbraco.Controls.TreePicker.inst[pickerClientId] != null) {
         var currentpicker = Umbraco.Controls.TreePicker.inst[pickerClientId];
 
         var jsonObj = [];

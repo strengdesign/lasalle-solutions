@@ -7,14 +7,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="css/dialogs.css" type="text/css" media="screen" />
 <script type="text/javascript" src="/umbraco_client/ui/jquery.js" /></script>
+<script src="scripts/jquery-migrate-1.4.1.min.js"></script>
+
 
 <style>
 
     #dialogcontainer
     {
         width: 570px;
-    	height:380px;
-    	overflow:auto;
+        height:380px;
+        overflow:auto;
     }
 
     .umb-control-group label.control-label {
@@ -32,6 +34,13 @@
        { %>
     <link rel="stylesheet" href="css/dialogsv7.css" type="text/css" media="screen" />
     <% } %>
+<style>
+    #dialogcontainer
+    {
+        width: 750px;
+    	height:650px;
+    }
+</style>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="body" runat="server">

@@ -28,6 +28,9 @@ else
             @Html.HiddenFor(x => Model.FormId)
 
             <input type="hidden" name="FormStep" id="FormStep" value="@Model.FormStep"/>
+            <input type="hidden" name="NextStep" id="NextStep" value="" />
+            <input type="hidden" name="PrevStep" id="PrevStep" value="" />
+            
             <input type="hidden" name="RecordId" id="RecordId" value="@Model.RecordId"/>
             <input type="hidden" name="PreviousClicked" id="PreviousClicked" value="@Model.PreviousClicked"/>
            
@@ -59,8 +62,14 @@ else
                         }
                     </fieldset>
                 }
-                <div style="display:none">
-                    <input type="text" id="HoneyPot"/>
+                <div style="display:none;">
+                    <input type="text" id="HoneyPot" />
+                </div>
+                <div class="contourField" style="display:none">
+                    <label for="@Model.FormId">Message</label>
+                    <div>
+                        <input type="text" id="@Model.FormId" name="@Model.FormId" />
+                    </div>
                 </div>
             </div>
 
@@ -80,8 +89,7 @@ else
                 {
                     <input type="submit" value="@Model.SubmitCaption"/>
                 }
-            </div>                        
-            
+            </div>   
         }
     </div>
 }
