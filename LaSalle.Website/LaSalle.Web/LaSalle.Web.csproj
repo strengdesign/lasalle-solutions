@@ -591,7 +591,9 @@
     <Content Include="Umbraco\Config\Lang\cs.xml" />
     <Content Include="Umbraco\Config\Lang\da.xml" />
     <Content Include="Umbraco\Config\Lang\de.xml" />
-    <Content Include="Umbraco\Config\Lang\en.xml" />
+    <Content Include="Umbraco\Config\Lang\en.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Umbraco\Config\Lang\en_us.xml" />
     <Content Include="Umbraco\Config\Lang\es.xml" />
     <Content Include="Umbraco\Config\Lang\fr.xml" />
@@ -599,7 +601,9 @@
     <Content Include="Umbraco\Config\Lang\it.xml" />
     <Content Include="Umbraco\Config\Lang\ja.xml" />
     <Content Include="Umbraco\Config\Lang\ko.xml" />
-    <Content Include="Umbraco\Config\Lang\nb.xml" />
+    <Content Include="Umbraco\Config\Lang\nb.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Umbraco\Config\Lang\nl.xml" />
     <Content Include="Umbraco\Config\Lang\no.xml" />
     <Content Include="Umbraco\Config\Lang\pl.xml" />
@@ -3835,7 +3839,6 @@
     <Content Include="App_Plugins\FontIconPicker\vendor\fontawesome\FontAwesome.otf" />
     <Content Include="App_Plugins\TagManager\package.manifest" />
     <Content Include="App_Plugins\u7dtg\package.manifest" />
-    <Content Include="App_Plugins\u7dtg\u7dtg.controller.js.bak" />
     <Content Include="MacroScripts\MvcRenderContourForm.cshtml" />
     <Content Include="Umbraco\assets\fonts\helveticons\helveticons.eot" />
     <Content Include="Umbraco\assets\fonts\helveticons\helveticons.ttf" />

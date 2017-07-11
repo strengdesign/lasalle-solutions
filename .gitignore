@@ -227,3 +227,4 @@ pip-log.txt
 /LaSalle.Website/LaSalle.Web/[Bb]in/*.dll
 /LaSalle.Website/LaSalle.Web/[Bb]in/*.xml
 /LaSalle.Website/LaSalle.Web/[Bb]in/*.config
+/LaSalle.Website/LaSalle.Web/App_Data/preview

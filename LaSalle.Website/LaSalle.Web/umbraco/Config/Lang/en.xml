@@ -917,12 +917,6 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="forms">Forms</key>
     <key alias="analytics">Analytics</key>
     <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
-    <key alias="FALM">F.A.L.M.</key>
   </area>
   <area alias="help">
     <key alias="goTo">go to</key>
