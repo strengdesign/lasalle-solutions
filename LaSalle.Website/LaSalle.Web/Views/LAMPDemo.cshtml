@@ -3,11 +3,11 @@
     Layout = "Interior.cshtml";
 }
 <div class="interior-content with-rail">
-	@CurrentPage.bodyText
-	@Umbraco.RenderMacro("umbracoContour.RazorRenderForm", new {FormGuid="0632765a-f6bb-45bf-a187-9bfa098a7e04"})
+    @CurrentPage.bodyText
+    @Umbraco.RenderMacro("umbracoContourRazorRenderForm", new { FormGuid = "0632765a-f6bb-45bf-a187-9bfa098a7e04" })
 </div> <!-- /interior-content -->
-	<div class="interior-rail">
-	@CurrentPage.topContent
-	@{Html.RenderPartial("_SidebarTestimonials");}
-	@CurrentPage.bottomContent
+<div class="interior-rail">
+    @CurrentPage.topContent
+    @{Html.RenderPartial("_SidebarTestimonials");}
+    @CurrentPage.bottomContent
 </div> <!-- /interior-rail -->
