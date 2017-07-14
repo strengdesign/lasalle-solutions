@@ -1,21 +1,26 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ClientDependency.Core.Mvc
-@using ClientDependency.Core
+@using Umbraco.Forms.MVC.Extensions
 @{
     Layout = null;
-	
-	//get the current full URL for sharing on social media
+
+    //get the current full URL for sharing on social media
     var currentFullUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.Url.PathAndQuery;
-	
-	//external redirects - redirect to the new URL if specified
-	if(CurrentPage.HasValue("umbracoRedirect")) {
-		Response.Redirect(CurrentPage.umbracoRedirect);
-	}
-	
-	Html.RequiresJs("~/scripts/fancybox.js");
-	Html.RequiresJs("~/scripts/scripts.js");
+
+    //external redirects - redirect to the new URL if specified
+    if(CurrentPage.HasValue("umbracoRedirect")) {
+        Response.Redirect(CurrentPage.umbracoRedirect);
+    }
+
+    Html.RequiresJs("~/scripts/fancybox.js");
+    //We must also have jQuery and jQuery UI as well at the top for Contour
+    Html.RequiresJs("~/umbraco_client/Application/JQuery/jquery.validate.min.js"); //Needed for Contour Form.
+    Html.RequiresJs("~/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js"); //Needed for Contour Form
+    Html.RequiresJs("~/umbraco/plugins/umbracocontour/scripts/frontend/contourform.js"); //Needed for Contour Form
+    Html.RequiresJs("~/scripts/scripts.js");
+
     Html.RequiresCss("~/css/normalize.css");
-	Html.RequiresCss("~/css/fancybox.css");
+    Html.RequiresCss("~/css/fancybox.css");
     Html.RequiresCss("~/css/main.css");
 }
 
@@ -46,17 +51,15 @@
 		<meta property="og:site_name" content="LaSalle Solutions">
 		<link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/22c3fee9-18fb-4d23-b06b-dd8a6e4ab6e6.css"/>
 		@Html.RenderCssHere()
+        <script src="//code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
 	</head>
 	<body id="top">
-	
 		<div class="site-header">
 			<div class="content clearfix">
-			
 				<a href="/" class="site-logo" title="Home"><img src="/images/logo.png" alt="LaSalle Solutions"></a>
 				
 				<div class="login-search">
 					<a href="https://lamp.elasalle.com/" target="_blank" class="login">Login</a>
-					
 					<form class="search" action="/search/" method="post">
 						<input type="search" name="q" id="searchfield" placeholder="Search">
 						<button><i class="icon-search"></i></button>
@@ -64,7 +67,6 @@
 				</div> <!-- /login-search -->
 				
 				@{Html.RenderPartial("_MainNavigation");}
-				
 			</div> <!-- /content -->
 		</div> <!-- /site-header -->
 
@@ -72,7 +74,6 @@
 							
 		<div class="footer">
 			<div class="content">
-				
 				@{Html.RenderPartial("_FooterNavigation");}
 				
 				<ul class="social-media">
@@ -82,7 +83,7 @@
 					<li><a href="https://www.facebook.com/LaSalleSolutions" class="icon-facebook" title="Facebook" target="_blank"></a></li>
 					<li><a href="https://www.twitter.com/managesmartnet" class="icon-twitter" title="Twitter" target="_blank"></a></li>	
 					<li><a href="https://plus.google.com/101253928686047020235/" rel="publisher" class="icon-google-plus" title="Google+" target="_blank"></a></li>						
-						</ul> <!-- /socia-media -->
+			    </ul> <!-- /socia-media -->
 				
 				<img src="/images/logo.png" alt="LaSalle Solutions" class="footer-logo">
 				<h3 class="tagline">Helping you manage the life-cycle of your assets</h3>
@@ -102,17 +103,19 @@
 					</li>
 				</ul> <!-- /footer-contact -->
 
-				<p class="copyright">&copy;2016 LaSalle Solutions. All rights reserved.</p>
-				
+				<p class="copyright">&copy;2017 LaSalle Solutions. All rights reserved.</p>
 				<a href="http://www.strengdesign.com" class="credit" target="_blank" title="Website design and development by Streng Design & Advertising"><i class="icon-streng"></i> Site by Streng Design</a>
-			
 			</div> <!-- /content -->
 		</div> <!-- /footer -->
 	
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		@RenderSection("ExtraScripts", false)
-		<script src="//w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">
+            var contourDateFormat = "@Html.ConvertDateFormat()";  //Needed for Contour Form
+        </script>
+		<script src="//w.sharethis.com/button/buttons.js" type="text/javascript"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js" type="text/javascript"></script>
 		@Html.RenderJsHere()
+        
 		<script type="text/javascript">
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
