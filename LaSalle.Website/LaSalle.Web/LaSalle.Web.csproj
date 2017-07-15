@@ -500,6 +500,8 @@
     <Content Include="Css\main.css" />
     <Content Include="Css\normalize.css" />
     <Content Include="default.aspx" />
+    <Content Include="404.html" />
+    <Content Include="error.html" />
     <Content Include="favicon.png" />
     <Content Include="Fonts\0d5a08af-4f03-4750-a8ca-a3e68f5f29ec.svg" />
     <Content Include="Fonts\1b694cdc-5f36-412b-8fd3-258e033c7705.svg" />
