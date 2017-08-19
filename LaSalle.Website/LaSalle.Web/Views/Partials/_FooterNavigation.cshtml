@@ -1,14 +1,17 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using System.Configuration;
-
+﻿@using System.Configuration;
+@using Umbraco.Web.Models;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
 	int configNodeId = Convert.ToInt32(ConfigurationManager.AppSettings["ConfigNode"]);
-	dynamic configNode = Umbraco.Content(configNodeId);
+	IPublishedContent configNode = Umbraco.TypedContent(configNodeId);
 }
 
-<ul class="footer-nav clearfix">
-	@foreach (var item in configNode.footerNavigation) {
-		var linkTarget = (item.newWindow == true) ? " target=\"_blank\"" : string.Empty;
-		<li><a href="@item.link" @Html.Raw(linkTarget)>@item.title</a></li>
-	}
-</ul> <!-- /footer-nav -->
+<div class="footer_nav">
+    <ul>
+        @foreach (var item in configNode.GetPropertyValue<RelatedLinks>("footerNavigation"))
+        {
+            string linkTarget = (item.NewWindow == true) ? "target=\"_blank\"" : string.Empty;
+            <li><a href="@item.Link" @Html.Raw(linkTarget)>@item.Caption</a></li>
+        }
+    </ul>
+</div>

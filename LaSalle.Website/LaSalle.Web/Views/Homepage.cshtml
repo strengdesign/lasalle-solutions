@@ -1,12 +1,70 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using RJP.MultiUrlPicker.Models;
+@using System.Configuration;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Main.cshtml";
+
+    int configNodeId = Convert.ToInt32(ConfigurationManager.AppSettings["ConfigNode"]);
+    IPublishedContent configNode = Umbraco.TypedContent(configNodeId);
+
+    IEnumerable<IPublishedContent> testimonials = Model.Content.AncestorOrSelf(1).Descendants("Testimonial").Where(n => n.GetPropertyValue<bool>("displayOnHome")).OrderByDescending(t => t.UpdateDate).Take(4);
 }
-<div class="hero">
-    @{
-        Html.RenderPartial("_HomePageHero");
-        Html.RenderPartial("_HomePageIntro");
-    }
-</div> <!-- /hero -->
+
+@{Html.RenderPartial("_HomePageHero");}
+@*<div class="hero">
+        @{
+            Html.RenderPartial("_HomePageHero");
+            Html.RenderPartial("_HomePageIntro");
+        }
+    </div>*@
 @{Html.RenderPartial("_HomePageFeatures");}
-@{Html.RenderPartial("_HomePageNews");}
+@*@{Html.RenderPartial("_HomePageNews");}*@
+
+@if (testimonials.Any())
+{
+    int starter = 0;
+    <section class="testimonial-data">
+        <div class="container">
+            <div class="testimonial-list carousel slide" id="client-testimonials">
+                <!-- Tab panes -->
+                <div class="carousel-inner">
+                    @foreach (IPublishedContent item in testimonials)
+                    {
+                        <div class="item @(starter == 0 ? "active" : string.Empty)">
+                            <div class="testimonial-text">
+                                <i>“</i>@item.GetPropertyValue("testimonial")<i>”</i>
+                                <span class="author">@string.Format("{0}, {1}", item.GetPropertyValue<string>("author"), item.GetPropertyValue<string>("company"))</span>
+                            </div>
+                        </div>
+                        starter++;
+                    }
+                </div>
+                <!-- Nav tabs -->
+                <ol class="nav nav-tabs carousel-indicators">
+                    @for (int i = 0; i < testimonials.Count(); i++)
+                    { <li data-target="#client-testimonials" data-slide-to="@i" class="@(i == 0 ? "active" : string.Empty)"></li> }
+                </ol>
+            </div>
+        </div>
+    </section>
+}
+
+@if (configNode.HasValue("awardImages"))
+{
+    <section class="awards">
+        <div class="wrapper">
+            <ul>
+                @{
+                    IEnumerable<IPublishedContent> awardImages = configNode.GetPropertyValue<IEnumerable<IPublishedContent>>("awardImages");
+                    foreach (IPublishedContent award in awardImages)
+                    { <li><img class="logo" src="@award.Url?width=150" alt="@award.Name" /></li> }
+                }
+            </ul>
+            @if (configNode.HasValue("awardsLearnMoreLink") && !string.IsNullOrWhiteSpace(configNode.GetPropertyValue<string>("awardsLearnMoreLink")))
+            {
+                Link learnMore = configNode.GetPropertyValue<Link>("awardsLearnMoreLink");
+                <a class="btn-red-border link" href="@learnMore.Url" title="@learnMore.Name">@learnMore.Name</a>
+            }
+        </div>
+    </section>
+}

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Archetype, Version=1.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Archetype.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +209,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RJP.MultiUrlPicker, Version=2.0.1.15742, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\RJP.MultiUrlPicker.dll</HintPath>
+    </Reference>
     <Reference Include="Semver, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\semver.1.1.2\lib\net451\Semver.dll</HintPath>
       <Private>True</Private>
@@ -365,6 +373,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Archetype\assets\logo_50.png" />
+    <Content Include="App_Plugins\Archetype\assets\twitter.png" />
+    <Content Include="App_Plugins\Archetype\css\archetype.css" />
+    <Content Include="App_Plugins\Archetype\js\archetype.js" />
+    <Content Include="App_Plugins\Archetype\langs\da-dk.js" />
+    <Content Include="App_Plugins\Archetype\langs\da.js" />
+    <Content Include="App_Plugins\Archetype\langs\de-de.js" />
+    <Content Include="App_Plugins\Archetype\langs\de.js" />
+    <Content Include="App_Plugins\Archetype\langs\en-gb.js" />
+    <Content Include="App_Plugins\Archetype\langs\en-us.js" />
+    <Content Include="App_Plugins\Archetype\langs\en.js" />
+    <Content Include="App_Plugins\Archetype\langs\es-es.js" />
+    <Content Include="App_Plugins\Archetype\langs\es.js" />
+    <Content Include="App_Plugins\Archetype\langs\fr-fr.js" />
+    <Content Include="App_Plugins\Archetype\langs\he-il.js" />
+    <Content Include="App_Plugins\Archetype\langs\it-it.js" />
+    <Content Include="App_Plugins\Archetype\langs\ja-jp.js" />
+    <Content Include="App_Plugins\Archetype\langs\ko-kr.js" />
+    <Content Include="App_Plugins\Archetype\langs\nb-no.js" />
+    <Content Include="App_Plugins\Archetype\langs\nl-nl.js" />
+    <Content Include="App_Plugins\Archetype\langs\pl-pl.js" />
+    <Content Include="App_Plugins\Archetype\langs\pt-br.js" />
+    <Content Include="App_Plugins\Archetype\langs\ru-ru.js" />
+    <Content Include="App_Plugins\Archetype\langs\sv-se.js" />
+    <Content Include="App_Plugins\Archetype\langs\zh-cn.js" />
+    <Content Include="App_Plugins\Archetype\views\archetype.config.developer.dialog.html" />
+    <Content Include="App_Plugins\Archetype\views\archetype.config.fieldset.dialog.html" />
+    <Content Include="App_Plugins\Archetype\views\archetype.config.html" />
+    <Content Include="App_Plugins\Archetype\views\archetype.config.stylescript.dialog.html" />
+    <Content Include="App_Plugins\Archetype\views\archetype.default.html" />
+    <Content Include="App_Plugins\Archetype\views\archetype.html" />
     <Content Include="App_Plugins\Contour\formpicker.controller.js" />
     <Content Include="App_Plugins\Contour\formpicker.html" />
     <Content Include="App_Plugins\DiploTraceLogViewer\backoffice\diplotracelog\detail.html" />
@@ -415,6 +454,10 @@
     <Content Include="App_Plugins\FALM\lang\en-GB.xml" />
     <Content Include="App_Plugins\FALM\lang\en-US.xml" />
     <Content Include="App_Plugins\FALM\lang\it-IT.xml" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\FontAwesomeIconsDD.controller.js" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\FontAwesomeIconsDD.html" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.controller.js" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.css" />
     <Content Include="App_Plugins\FontIconPicker\icon-picker.html" />
@@ -428,6 +471,8 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.html" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.js" />
     <Content Include="App_Plugins\TagManager\backoffice\TagManagerTree\edit.controller.js" />
     <Content Include="App_Plugins\TagManager\backoffice\TagManagerTree\edit.html" />
     <Content Include="App_Plugins\TagManager\TagManager.resource.js" />
@@ -508,6 +553,8 @@
     <Content Include="Fonts\2edae1f9-1ef5-45d1-a803-74273208f961.svg" />
     <Content Include="Fonts\lasalle.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\arrow-down.png" />
+    <Content Include="Images\features-option1-bg.png" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\fancybox\blank.gif" />
     <Content Include="Images\fancybox\fancybox_loading%402x.gif" />
@@ -515,6 +562,9 @@
     <Content Include="Images\fancybox\fancybox_overlay.png" />
     <Content Include="Images\fancybox\fancybox_sprite%402x.png" />
     <Content Include="Images\fancybox\fancybox_sprite.png" />
+    <Content Include="Images\footer-logo.png" />
+    <Content Include="Images\footer-logo-small.png" />
+    <Content Include="Images\header-bg-top.png" />
     <Content Include="Images\icons\favicon-114.png" />
     <Content Include="Images\icons\favicon-120.png" />
     <Content Include="Images\icons\favicon-144.png" />
@@ -528,10 +578,23 @@
     <Content Include="Images\laptop-bg.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logos\lamp.png" />
+    <Content Include="Images\search-icon.png" />
+    <Content Include="Images\icon-youtube.png" />
+    <Content Include="Images\icon-linkedin.png" />
+    <Content Include="Images\icon-facebook.png" />
+    <Content Include="Images\icon-twitter.png" />
+    <Content Include="Images\search_icon2.png" />
+    <Content Include="Images\search_icon3.png" />
+    <Content Include="Images\separator-vertical.jpg" />
+    <Content Include="Images\title-bg.jpg" />
+    <Content Include="Images\video-bg.png" />
+    <Content Include="Images\video-bg-mobile.png" />
+    <Content Include="Lib\Archetype.dll" />
     <Content Include="Lib\Diplo.TraceLogViewer.dll" />
     <Content Include="Lib\FALM.Housekeeping.dll" />
     <Content Include="Lib\NPoco.dll" />
     <Content Include="Lib\Our.Umbraco.ezSearch.dll" />
+    <Content Include="Lib\RJP.MultiUrlPicker.dll" />
     <Content Include="Lib\Umbraco.Forms.CodeFirst.dll" />
     <Content Include="Lib\Umbraco.Forms.Core.dll" />
     <Content Include="Lib\Umbraco.Forms.Core.Providers.dll" />
@@ -3832,7 +3895,9 @@
     <Content Include="App_Data\packages\installed\installedPackages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\umbraco.config" />
+    <Content Include="App_Data\umbraco.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Plugins\Contour\package.manifest" />
     <Content Include="App_Plugins\FontIconPicker\package.manifest" />
     <Content Include="App_Plugins\FontIconPicker\vendor\fontawesome\fontawesome-webfont.eot" />
@@ -5170,6 +5235,14 @@
     <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="App_Plugins\FALM\backoffice\housekeeping\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="App_Plugins\FALM\package.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="App_Plugins\FontAwesomeIconsDD\package.manifest" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,10 +1,46 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-
-@if(CurrentPage.HasValue("youtubeID")) {
-	string youtubeURL = "//www.youtube.com/embed/" + @CurrentPage.youtubeID + "?autoplay=1&rel=0&hd=1&vq=hd720";
-	<a href="@youtubeURL" target="_blank" class="photo-link fancybox.iframe">
-		<img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
-	</a> <!-- /photo-link -->
-} else {
-	<img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
+@{ 
+    int tempHolder = 0;
+    string buttonTitle = Model.Content.HasValue("introButtonTitle") ? CurrentPage.introButtonTitle : "Learn More";
+    string buttonUrl = Model.Content.HasValue("introButtonLink") ? Umbraco.Content(CurrentPage.introButtonLink).Url : "#";
 }
+<div class="video">
+    <div class="video_wrapper">
+        <div class="video_mid">
+            @if (Model.Content.HasValue("introTitle"))
+            { <h1>@Html.Raw(CurrentPage.introTitle)</h1> }
+            <div class="video_img">
+                @if (Model.Content.HasValue("youtubeID"))
+                {
+                    string youtubeURL = "//www.youtube.com/embed/" + Model.Content.GetPropertyValue<string>("youtubeID") + "?autoplay=1&rel=0&hd=1&vq=hd720";
+                    <a href="@youtubeURL" target="_blank" class="photo-link fancybox.iframe">
+                        <img src="@(Model.Content.GetPropertyValue<IPublishedContent>("headerImage") == null ? Umbraco.Media(Model.Content.GetPropertyValue<int>("headerImage")).umbracoFile : CurrentPage.headerImage.Url)" alt="@CurrentPage.heroTitle" />
+                    </a>
+                }
+                else
+                {
+                    <img src="@(Model.Content.GetPropertyValue<IPublishedContent>("headerImage") == null ? Umbraco.Media(Model.Content.GetPropertyValue<int>("headerImage")).umbracoFile : CurrentPage.headerImage.Url)" alt="@CurrentPage.heroTitle" />
+                }
+            </div>
+            @if (Model.Content.HasValue("introSubTitle"))
+            { <h2>@CurrentPage.introSubTitle</h2> }
+            @if (Model.Content.HasValue("introCopy"))
+            { <p>@CurrentPage.introCopy</p> }
+            @if (Model.Content.HasValue("introButtonLink"))
+            {
+                <a href="@buttonUrl" class="btn">@buttonTitle</a>
+            }
+            <div class="video_img_arrow"><a href="@buttonUrl"><img src="/images/arrow-down.png" alt="@buttonTitle" /></a></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+@*@if(CurrentPage.HasValue("youtubeID")) {
+    string youtubeURL = "//www.youtube.com/embed/" + @CurrentPage.youtubeID + "?autoplay=1&rel=0&hd=1&vq=hd720";
+    <a href="@youtubeURL" target="_blank" class="photo-link fancybox.iframe">
+        <img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
+    </a>
+} else {
+    <img src="@Umbraco.Media(CurrentPage.headerImage).umbracoFile" alt="@CurrentPage.heroTitle" class="photo" />
+}*@

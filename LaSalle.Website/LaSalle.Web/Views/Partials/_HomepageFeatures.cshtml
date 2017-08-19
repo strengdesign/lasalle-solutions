@@ -1,25 +1,96 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Umbraco.Web.Models;
+@using Archetype.Models;
+@using RJP.MultiUrlPicker.Models;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{ 
+    ArchetypeModel bottomFeatures = Model.Content.GetPropertyValue<ArchetypeModel>("bottomSectionFeatures");
+}
+<!--*** result_sec ***-->
+@if (CurrentPage.topSectionFeatures.Count > 0)
+{
+    <div class="features-option1">
+        <div class="wrapper">
+            <div class="separator">
+                <ul>
+                    @foreach (var hpFeature in CurrentPage.topSectionFeatures)
+                    {
+                        <li>
+                            <div class="data">
+                                <div class="image">
+                                    @if (!string.IsNullOrWhiteSpace(hpFeature.listIcon.ToString()))
+                                    { <i class="@hpFeature.listIcon"></i> }
+                                    else if (!string.IsNullOrWhiteSpace(Convert.ToString(hpFeature.iconImage)))
+                                    { <img src="@Umbraco.TypedMedia(hpFeature.iconImage.ToString()).Url" alt="" /> }
+                                </div>
+                                <div class="text">
+                                    @if (!string.IsNullOrWhiteSpace(hpFeature.listTitle.ToString()))
+                                    { <h3>@hpFeature.listTitle</h3>}
+                                    @if (!string.IsNullOrWhiteSpace(hpFeature.listDescription.ToString()))
+                                    { <p>@hpFeature.listDescription</p> }
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="buttons">
+                    @foreach (var item in Model.Content.GetPropertyValue<RelatedLinks>("topSectionAdditionalLinks"))
+                    {
+                        string linkTarget = (item.NewWindow == true) ? "target=\"_blank\"" : string.Empty;
+                        <a class="btn-red-border" href="@item.Link" @Html.Raw(linkTarget)>@item.Caption</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear clearfix"></div>
+}
+<!--*** result_sec ***-->
 
-<div class="hp-features cols-@CurrentPage.homePageFeatures.Count">
-	@foreach (var hpFeature in CurrentPage.homePageFeatures) {
-		<div class="feature">
-			@if(!string.IsNullOrEmpty(hpFeature.icon.ToString())) {
-				<i class="@hpFeature.icon"></i>
-			}
-			
-			@if(!string.IsNullOrEmpty(hpFeature.title.ToString())) {
-				<h2>@hpFeature.title</h2>
-			}
-			
-			@if(!string.IsNullOrEmpty(hpFeature.shortDescription.ToString())) {
-				<p>@hpFeature.shortDescription</p>
-			}
-			
-			@if(!string.IsNullOrEmpty(hpFeature.buttonLink.ToString())) {
-				string buttonTitle = !string.IsNullOrEmpty(hpFeature.buttonTitle.ToString()) ? hpFeature.buttonTitle : "Learn More";
-				<a href="@Umbraco.Content(Convert.ToInt32(hpFeature.buttonLink)).Url" class="btn">@buttonTitle</a>
-			}
-			
-		</div> <!-- /feature -->
-	}
-</div> <!-- /hp-features -->
+@if (bottomFeatures.Any())
+{
+    <section class="features-boxed">
+        <div class="container">
+            <ul>
+                @foreach (ArchetypeFieldsetModel feature in bottomFeatures)
+                {
+                    Link learnMore = feature.GetValue<Link>("link");
+                    string backgroundImage = string.Empty;
+                    IPublishedContent background = feature.GetValue<int>("background") > 0 ? Umbraco.TypedMedia(feature.GetValue<int>("background")) : feature.GetValue<IPublishedContent>("background");
+                    if (background != null)
+                    {
+                        backgroundImage = background.Url;
+                    }
+                    <li @Html.Raw(!string.IsNullOrWhiteSpace(backgroundImage) ? string.Format("style=\"background-image: url('{0}');\"", backgroundImage) : string.Empty)>
+                        <i class="fa @feature.GetValue("icon") fa-4x" aria-hidden="true"></i>
+                        <h3>@Html.Raw(feature.GetValue("title"))</h3>
+                        <p>@Html.Raw(feature.GetValue("description"))</p>
+                        @if (learnMore != null)
+                        { <a class="btn-black" href="@learnMore.Url" title="@learnMore.Name">@(string.IsNullOrWhiteSpace(learnMore.Name) ? "Learn More" : learnMore.Name)</a> }
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+}
+
+@*<div class="hp-features cols-@CurrentPage.homePageFeatures.Count">
+    @foreach (var hpFeature in CurrentPage.homePageFeatures)
+    {
+        <div class="feature">
+            @if (!string.IsNullOrWhiteSpace(hpFeature.icon.ToString()))
+            { <i class="@hpFeature.icon"></i> }
+
+            @if (!string.IsNullOrWhiteSpace(hpFeature.title.ToString()))
+            { <h2>@hpFeature.title</h2>}
+
+            @if (!string.IsNullOrWhiteSpace(hpFeature.shortDescription.ToString()))
+            { <p>@hpFeature.shortDescription</p>}
+
+            @if (!string.IsNullOrWhiteSpace(hpFeature.buttonLink.ToString()))
+            {
+                string buttonTitle = !string.IsNullOrWhiteSpace(hpFeature.buttonTitle.ToString()) ? hpFeature.buttonTitle : "Learn More";
+                <a href="@Umbraco.Content(Convert.ToInt32(hpFeature.buttonLink)).Url" class="btn">@buttonTitle</a>
+            }
+        </div>
+    }
+</div>*@
