@@ -2366,10 +2366,84 @@ a.more {
                 color: #333132 !important;
             }
 
+.features-news {
+    padding: 4em 0 0 0;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+}
+
+    .features-news ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .features-news ul li {
+            width: 47%;
+            margin-right: 2%;
+            float: left;
+            color: #fff;
+            margin-bottom: 3em;
+        }
+
+            .features-news ul li:nth-child(2n) {
+                margin-right: 0;
+                margin-left: 2%;
+            }
+
+            .features-news ul li:after {
+                margin-top: 1em;
+                display: block;
+                content: " ";
+                border-bottom: 4px solid #ef4035;
+            }
+
+            .features-news ul li .boxed {
+                background: #333132 no-repeat;
+                background-size: cover;
+                background-position: right;
+                padding: 3em;
+            }
+
+            .features-news ul li .date {
+                text-transform: uppercase;
+            }
+
+            .features-news ul li h3 {
+                color: inherit;
+                font-size: 32px;
+                margin-bottom: 0.8em;
+                line-height: normal;
+            }
+
+            .features-news ul li p {
+                padding-bottom: 1em;
+                font-size: 14px;
+            }
+
+            .features-news ul li a {
+                font-weight: normal;
+            }
+
+                .features-news ul li a.btn-black:hover {
+                    border: 1px solid #000;
+                }
+
+    .features-news div.link, .features-news div.list {
+        clear: both;
+    }
+
+    .features-news div.link {
+        padding: 2em 0;
+        display: block;
+        text-align: center;
+    }
+
 /* Buttons Styles */
 .btn-red, .btn-red-border, .btn-black {
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 600;
     font-style: normal;
     letter-spacing: 1px;
     padding: 15px 25px;
@@ -2502,6 +2576,10 @@ a.more {
 
     .features-option1 .wrapper {
         width: 95%;
+    }
+
+    .features-news {
+        padding: 2em 0 0 0;
     }
 }
 
@@ -3489,6 +3567,12 @@ a.more {
         margin-left: 0;
         padding: 2em;
     }
+
+    .features-news ul li, .features-news ul li:nth-child(2n) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -3521,6 +3605,14 @@ a.more {
         clear: right;
         margin-right: 0;
     }
+
+    .features-news {
+        padding: 0;
+    }
+
+        .features-news ul li .boxed {
+            padding: 2em;
+        }
 }
 
 @media only screen and (max-width: 320px) {

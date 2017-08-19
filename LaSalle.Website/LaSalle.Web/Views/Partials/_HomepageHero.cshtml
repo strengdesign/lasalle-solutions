@@ -1,7 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@{ 
-    int tempHolder = 0;
-    string buttonTitle = Model.Content.HasValue("introButtonTitle") ? CurrentPage.introButtonTitle : "Learn More";
+@{
+    string buttonTitle = Model.Content.HasValue("introButtonTitle") ? CurrentPage.introButtonTitle : Umbraco.GetDictionaryValue("LearnMore_Text");
     string buttonUrl = Model.Content.HasValue("introButtonLink") ? Umbraco.Content(CurrentPage.introButtonLink).Url : "#";
 }
 <div class="video">

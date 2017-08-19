@@ -1,20 +1,39 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-
 @{
-	dynamic newsNode = Umbraco.Content(1131);
+    int mainNewsFolderId = 1131;
+    IPublishedContent newsFolder = Umbraco.TypedContent(mainNewsFolderId);
+    IEnumerable<IPublishedContent> latestNews = newsFolder.Children.Where(n => n.IsVisible()).OrderByDescending(n => n.GetPropertyValue<DateTime>("date")).Take(2);
 }
 
-<div class="hp-news">
-	<div class="content">
-		
-		@foreach(var newsArticle in newsNode.Children.OrderBy("date desc").Take(4)) {
-			string articleTitle = !string.IsNullOrEmpty(newsArticle.title) ? newsArticle.title : newsArticle.Name;
-			
-			<div class="news-item">
-				<h2><a href="@newsArticle.Url">@articleTitle</a></h2>
-				<p>@newsArticle.teaser <a href="@newsArticle.Url">Read More</a></p>
-			</div> <!-- /news-item -->
-		}
-		
-	</div> <!-- /content -->
-</div> <!-- /hp-news -->
+<section class="features-news">
+    <div class="container">
+        <div class="list">
+            <ul>
+                @foreach (IPublishedContent news in latestNews)
+                {
+                    string backgroundImage = string.Empty;
+                    IPublishedContent background = news.GetPropertyValue<int>("background") > 0 ? Umbraco.TypedMedia(news.GetPropertyValue<int>("background")) : news.GetPropertyValue<IPublishedContent>("background");
+                    if (background != null)
+                    {
+                        backgroundImage = background.Url;
+                    }
+
+                    string newsTitle = news.GetPropertyValue<string>("title");
+                    if (string.IsNullOrWhiteSpace(newsTitle)) { newsTitle = news.Name; }
+                    <li>
+                        <div class="boxed" @Html.Raw(!string.IsNullOrWhiteSpace(backgroundImage) ? string.Format("style=\"background-image: url('{0}');\"", backgroundImage) : string.Empty)>
+                            <div class="date">@(news.GetPropertyValue<DateTime>("date").ToString("MMMM dd, yyyy"))</div>
+                            <h3>@Html.Raw(newsTitle)</h3>
+                            @if (news.HasValue("teaser"))
+                            { <p>@Umbraco.StripHtml(news.GetPropertyValue<HtmlString>("teaser"))</p> }
+                            <a class="btn-black" href="@news.Url" title="@newsTitle">@Umbraco.GetDictionaryValue("ReadMore_Text")</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="link">
+            <a class="btn-red-border link" href="@newsFolder.Url" title="@Umbraco.GetDictionaryValue("MoreNews_Text")">@Umbraco.GetDictionaryValue("MoreNews_Text")</a>
+        </div>
+    </div>
+</section>

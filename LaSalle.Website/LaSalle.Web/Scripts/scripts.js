@@ -104,7 +104,7 @@ $(function () {
 
     $('#client-testimonials').carousel({ interval: 8000, cycle: true, pause: true });
 
-    if ($(window).width() <= 770) {
+    if ($(window).width() <= 1025) {
         var maxHeight = -1;
         $('#client-testimonials .item').each(function () {
             if ($(this).height() > maxHeight) {
@@ -114,7 +114,8 @@ $(function () {
         $('#client-testimonials .testimonial-text').height(maxHeight);
     }
 
-    if ($(window).width() > 600 && $(window).width() <= 1024) {
+    if ($(window).width() > 600) {
+        //Homepage middle section features
         var maxHeight = -1;
         $('.features-boxed li').each(function () {
             if ($(this).height() > maxHeight) {
@@ -122,6 +123,15 @@ $(function () {
             }
         });
         $('.features-boxed li').height(maxHeight);
+
+        //Homepage bottom section news
+        maxHeight = -1;
+        $('.features-news .boxed').each(function () {
+            if ($(this).height() > maxHeight) {
+                maxHeight = $(this).height();
+            }
+        });
+        $('.features-news .boxed').height(maxHeight);
     }
 
     ///* Coro */

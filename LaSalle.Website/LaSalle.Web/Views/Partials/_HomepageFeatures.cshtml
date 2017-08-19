@@ -65,7 +65,7 @@
                         <h3>@Html.Raw(feature.GetValue("title"))</h3>
                         <p>@Html.Raw(feature.GetValue("description"))</p>
                         @if (learnMore != null)
-                        { <a class="btn-black" href="@learnMore.Url" title="@learnMore.Name">@(string.IsNullOrWhiteSpace(learnMore.Name) ? "Learn More" : learnMore.Name)</a> }
+                        { <a class="btn-black" href="@learnMore.Url" title="@learnMore.Name">@(string.IsNullOrWhiteSpace(learnMore.Name) ? Umbraco.GetDictionaryValue("LearnMore_Text") : learnMore.Name)</a> }
                     </li>
                 }
             </ul>
@@ -88,7 +88,7 @@
 
             @if (!string.IsNullOrWhiteSpace(hpFeature.buttonLink.ToString()))
             {
-                string buttonTitle = !string.IsNullOrWhiteSpace(hpFeature.buttonTitle.ToString()) ? hpFeature.buttonTitle : "Learn More";
+                string buttonTitle = !string.IsNullOrWhiteSpace(hpFeature.buttonTitle.ToString()) ? hpFeature.buttonTitle : Umbraco.GetDictionaryValue("LearnMore_Text");
                 <a href="@Umbraco.Content(Convert.ToInt32(hpFeature.buttonLink)).Url" class="btn">@buttonTitle</a>
             }
         </div>

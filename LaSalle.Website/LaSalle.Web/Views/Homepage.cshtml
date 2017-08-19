@@ -11,14 +11,7 @@
 }
 
 @{Html.RenderPartial("_HomePageHero");}
-@*<div class="hero">
-        @{
-            Html.RenderPartial("_HomePageHero");
-            Html.RenderPartial("_HomePageIntro");
-        }
-    </div>*@
 @{Html.RenderPartial("_HomePageFeatures");}
-@*@{Html.RenderPartial("_HomePageNews");}*@
 
 @if (testimonials.Any())
 {
@@ -48,6 +41,8 @@
         </div>
     </section>
 }
+
+@{Html.RenderPartial("_HomePageNews");}
 
 @if (configNode.HasValue("awardImages"))
 {
