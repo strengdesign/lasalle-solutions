@@ -4,6 +4,7 @@
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{ 
     ArchetypeModel bottomFeatures = Model.Content.GetPropertyValue<ArchetypeModel>("bottomSectionFeatures");
+    int buttonListIndex = 0;
 }
 <!--*** result_sec ***-->
 @if (CurrentPage.topSectionFeatures.Count > 0)
@@ -36,7 +37,8 @@
                     @foreach (var item in Model.Content.GetPropertyValue<RelatedLinks>("topSectionAdditionalLinks"))
                     {
                         string linkTarget = (item.NewWindow == true) ? "target=\"_blank\"" : string.Empty;
-                        <a class="btn-red-border" href="@item.Link" @Html.Raw(linkTarget)>@item.Caption</a>
+                        <a class="@(buttonListIndex == 0 ? "btn-red-border" : "btn-red")" href="@item.Link" @Html.Raw(linkTarget)>@item.Caption</a>
+                        buttonListIndex++;
                     }
                 </div>
             </div>
@@ -61,7 +63,7 @@
                         backgroundImage = background.Url;
                     }
                     <li @Html.Raw(!string.IsNullOrWhiteSpace(backgroundImage) ? string.Format("style=\"background-image: url('{0}');\"", backgroundImage) : string.Empty)>
-                        <i class="fa @feature.GetValue("icon") fa-4x" aria-hidden="true"></i>
+                        <i class="fa @feature.GetValue("icon") fa-3x" aria-hidden="true"></i>
                         <h3>@Html.Raw(feature.GetValue("title"))</h3>
                         <p>@Html.Raw(feature.GetValue("description"))</p>
                         @if (learnMore != null)

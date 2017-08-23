@@ -17,6 +17,14 @@ red:			ef4035
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'lasalleicons';
+    src: url('/fonts/lasalleicons.eot');
+    src: url('/fonts/lasalleicons.eot?#iefix') format('embedded-opentype'), url('/fonts/lasalleicons.woff') format('woff'), url('/fonts/lasalleicons.ttf') format('truetype'), url('/fonts/lasalleicons.svg#lasalleicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -784,7 +792,53 @@ img, object, embed {
     content: "\f16d";
 }
 
+[class^="icon-new-"], [class*=" icon-new-"] {
+    font-family: 'lasalleicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
+.icon-new-calendar:before {
+    content: '\0041';
+}
+
+.icon-new-document:before {
+    content: '\0042';
+}
+
+.icon-new-clipboard:before {
+    content: '\0043';
+}
+
+.icon-new-lightbulb:before {
+    content: '\0044';
+}
+
+.icon-new-monitor:before {
+    content: '\0046';
+}
+
+.icon-new-monitor-phone:before {
+    content: '\0047';
+}
+
+.icon-new-reward:before {
+    content: '\0048';
+}
+
+.icon-new-trash:before {
+    content: '\0049';
+}
+
+.icon-new-integration:before {
+    content: '\004a';
+}
 
 /* ==========================================================================
    Grid Styles
@@ -1992,7 +2046,7 @@ a.more {
                 }
 
             .video .video_wrapper .video_mid .video_img_arrow {
-                margin: 2em 0;
+                margin: 4em 0 2em 0;
                 text-align: center;
                 width: 100%;
             }
@@ -2020,8 +2074,8 @@ a.more {
                 font-size: 37px;
                 font-style: normal;
                 font-weight: normal;
-                margin-bottom: 36px;
-                padding-bottom: 47px;
+                margin-bottom: 1.5em;
+                padding-bottom: 1.5em;
             }
 /**** video ****/
 
@@ -2169,8 +2223,7 @@ a.more {
                         font-weight: 400;
                         font-style: normal;
                         font-size: 34px;
-                        margin: 0;
-                        margin-top: -10px;
+                        margin: -5px 0 0.7em 0;
                         line-height: normal;
                     }
 
@@ -2362,8 +2415,9 @@ a.more {
                 font-size: 16px;
             }
 
-            .features-boxed ul li a {
+            .features-boxed ul li a.btn-black {
                 font-weight: normal;
+                background-color: rgba(0, 0, 0, 0);
             }
 
             .features-boxed ul li:hover a.btn-black {
@@ -2428,12 +2482,14 @@ a.more {
                 font-size: 14px;
             }
 
-            .features-news ul li a {
+            .features-news ul li a.btn-black {
                 font-weight: normal;
+                background-color: rgba(0, 0, 0, 0);
             }
 
                 .features-news ul li a.btn-black:hover {
-                    border: 1px solid #000;
+                    border: 1px solid #333132;
+                    background: #fff;
                 }
 
     .features-news div.link, .features-news div.list {
@@ -2467,8 +2523,8 @@ a.more {
 }
 
     .btn-red-border:hover {
-        background: #ef4035;
-        border: 1px solid #ef4035;
+        background: #353538;
+        border: 1px solid #353538;
         color: #fff !important;
         text-decoration: none;
     }
@@ -2476,13 +2532,13 @@ a.more {
 .btn-red {
     background: #ef4035 none repeat scroll 0 0;
     border: 1px solid #ef4035;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
     .btn-red:hover {
-        background: #fff;
+        background: #353538;
         border: 1px solid #353538;
-        color: #353538;
+        color: #fff !important;
         text-decoration: none;
     }
 

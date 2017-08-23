@@ -552,6 +552,7 @@
     <Content Include="Fonts\1b694cdc-5f36-412b-8fd3-258e033c7705.svg" />
     <Content Include="Fonts\2edae1f9-1ef5-45d1-a803-74273208f961.svg" />
     <Content Include="Fonts\lasalle.svg" />
+    <Content Include="Fonts\lasalleicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\arrow-down.png" />
     <Content Include="Images\features-option1-bg.png" />
@@ -5242,6 +5243,11 @@
     <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="App_Plugins\FontAwesomeIconsDD\package.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\lasalleicons.eot" />
+    <Content Include="Fonts\lasalleicons.ttf" />
+    <Content Include="Fonts\lasalleicons.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

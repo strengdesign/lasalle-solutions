@@ -25,7 +25,7 @@
                             <div class="date">@(news.GetPropertyValue<DateTime>("date").ToString("MMMM dd, yyyy"))</div>
                             <h3>@Html.Raw(newsTitle)</h3>
                             @if (news.HasValue("teaser"))
-                            { <p>@Umbraco.StripHtml(news.GetPropertyValue<HtmlString>("teaser"))</p> }
+                            { <p>@Umbraco.Truncate(Umbraco.StripHtml(news.GetPropertyValue<HtmlString>("teaser")), 180, true)</p> }
                             <a class="btn-black" href="@news.Url" title="@newsTitle">@Umbraco.GetDictionaryValue("ReadMore_Text")</a>
                         </div>
                     </li>
