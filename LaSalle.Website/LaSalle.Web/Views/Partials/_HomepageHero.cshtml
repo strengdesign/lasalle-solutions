@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     string buttonTitle = Model.Content.HasValue("introButtonTitle") ? CurrentPage.introButtonTitle : Umbraco.GetDictionaryValue("LearnMore_Text");
-    string buttonUrl = Model.Content.HasValue("introButtonLink") ? Umbraco.Content(CurrentPage.introButtonLink).Url : "#";
+    string buttonUrl = Model.Content.HasValue("introButtonLink") ? Umbraco.Content(CurrentPage.introButtonLink).Url : "javascript:;";
 }
 <div class="video">
     <div class="video_wrapper">

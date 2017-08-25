@@ -566,6 +566,7 @@
     <Content Include="Images\footer-logo.png" />
     <Content Include="Images\footer-logo-small.png" />
     <Content Include="Images\header-bg-top.png" />
+    <Content Include="Images\icon-instagram.png" />
     <Content Include="Images\icons\favicon-114.png" />
     <Content Include="Images\icons\favicon-120.png" />
     <Content Include="Images\icons\favicon-144.png" />
