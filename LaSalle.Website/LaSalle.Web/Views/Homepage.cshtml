@@ -25,7 +25,7 @@
                     {
                         <div class="item @(starter == 0 ? "active" : string.Empty)">
                             <div class="testimonial-text">
-                                <i>“</i>@item.GetPropertyValue("testimonial")<i>”</i>
+                                <i class="before">“</i>@item.GetPropertyValue("testimonial")<i class="after">”</i>
                                 <span class="author">@string.Format("{0}, {1}", item.GetPropertyValue<string>("author"), item.GetPropertyValue<string>("company"))</span>
                             </div>
                         </div>
