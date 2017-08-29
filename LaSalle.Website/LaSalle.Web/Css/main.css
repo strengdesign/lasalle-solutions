@@ -2201,21 +2201,21 @@ a.more {
                     .features-option1 .wrapper .separator ul li .image {
                         float: left;
                         text-align: center;
-                        width: 95px;
+                        width: 90px;
                     }
 
                         .features-option1 .wrapper .separator ul li .image i {
                             color: #ef4035;
-                            font-size: 5em;
+                            font-size: 4.5em;
                         }
 
                         .features-option1 .wrapper .separator ul li .image img {
-                            width: 95px;
+                            width: 90px;
                         }
 
                     .features-option1 .wrapper .separator ul li .text {
                         float: right;
-                        width: 75%;
+                        width: 78%;
                     }
 
                     .features-option1 .wrapper .separator ul li h3 {
@@ -2244,7 +2244,7 @@ a.more {
 .awards {
     background: #fff;
     width: 100%;
-    padding: 4em 5em;
+    padding: 5em;
     margin: 0 auto;
     clear: both;
     display: inline-block;
@@ -2278,7 +2278,7 @@ a.more {
 .testimonial-data {
     background: #fff;
     width: 100%;
-    padding: 3em 5em;
+    padding: 4em 5em;
     clear: both;
     display: inline-block;
 }
@@ -2298,11 +2298,11 @@ a.more {
         .testimonial-data .testimonial-list .testimonial-text i {
             color: #ef4035;
             font-family: Georgia,serif;
-            font-size: 2em;
+            font-size: 1.5em;
             line-height: 1px;
             padding-right: 5px;
             position: relative;
-            top: 0.2em;
+            top: 0.1em;
         }
 
         .testimonial-data .testimonial-list .testimonial-text span.author {
@@ -3143,18 +3143,23 @@ a.more {
         background-position: center 15%;
     }
 
-        .features-option1 .wrapper .separator ul li .image {
-            float: none;
-            text-align: center;
-            width: auto;
-            margin-bottom: 1.5em;
+        .features-option1 .wrapper .separator ul li {
+            min-height: 300px;
+            padding-bottom: 0;
         }
 
-        .features-option1 .wrapper .separator ul li .text {
-            float: none;
-            text-align: center;
-            width: 100%;
-        }
+            .features-option1 .wrapper .separator ul li .image {
+                float: none;
+                text-align: center;
+                width: auto;
+                margin-bottom: 1.5em;
+            }
+
+            .features-option1 .wrapper .separator ul li .text {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
 
     .testimonial-data, .awards {
         padding: 3em;
@@ -3558,7 +3563,7 @@ a.more {
             border-bottom: 1px solid #e1e1e1;
             float: left;
             margin-right: 0;
-            min-height: auto;
+            min-height: 200px;
             margin-bottom: 3em;
             padding-bottom: 2em;
         }

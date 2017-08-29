@@ -102,37 +102,53 @@ $(function () {
         $(this).val('').width(0);
     });
 
+    // Homepage: Start
     $('#client-testimonials').carousel({ interval: 8000, cycle: true, pause: true });
 
-    if ($(window).width() <= 1025) {
-        var maxHeight = -1;
-        $('#client-testimonials .item').each(function () {
-            if ($(this).height() > maxHeight) {
-                maxHeight = $(this).height();
-            }
-        });
-        $('#client-testimonials .testimonial-text').height(maxHeight);
+    adjustHomeTestimonials();
+    adjustHomeNewsAndFeatures();
+    $(window).on('resize', function () {
+        adjustHomeTestimonials();
+        adjustHomeNewsAndFeatures();
+    });
+
+    function adjustHomeTestimonials() {
+        if ($(window).width() <= 1025) {
+            var maxHeight = -1;
+            $('#client-testimonials .testimonial-text').height('auto');
+            $('#client-testimonials .item').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('#client-testimonials .testimonial-text').height(maxHeight);
+        }
     }
 
-    if ($(window).width() > 600) {
-        //Homepage middle section features
-        var maxHeight = -1;
-        $('.features-boxed li').each(function () {
-            if ($(this).height() > maxHeight) {
-                maxHeight = $(this).height();
-            }
-        });
-        $('.features-boxed li').height(maxHeight);
+    function adjustHomeNewsAndFeatures() {
+        if ($(window).width() > 600) {
+            //Homepage middle section features
+            var maxHeight = -1;
+            $('.features-boxed li').height('auto');
+            $('.features-boxed li').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('.features-boxed li').height(maxHeight);
 
-        //Homepage bottom section news
-        maxHeight = -1;
-        $('.features-news .boxed').each(function () {
-            if ($(this).height() > maxHeight) {
-                maxHeight = $(this).height();
-            }
-        });
-        $('.features-news .boxed').height(maxHeight);
+            //Homepage bottom section news
+            maxHeight = -1;
+            $('.features-news .boxed').height('auto');
+            $('.features-news .boxed').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('.features-news .boxed').height(maxHeight);
+        }
     }
+    // Homepage: End
 
     ///* Coro */
     //// vars for testimonials carousel
