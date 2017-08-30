@@ -962,7 +962,10 @@ img, object, embed {
     background: #c7c8ca none repeat scroll 0 0;
     padding: 80px 0 30px;
     width: 100%;
-    position: absolute;
+    /*position: absolute;*/
+    clear: both;
+    display: inline-block;
+    float: left;
 }
 
     .footer_main .footer_wrapper {
@@ -2033,16 +2036,15 @@ a.more {
 
             .video .video_wrapper .video_mid .video_img {
                 background: rgba(0, 0, 0, 0) url("/images/video-bg.png") no-repeat scroll center top;
-                height: 452px;
-                margin: 40px 0 80px;
-                padding-top: 32px;
+                height: 420px;
+                margin: 3em 0;
+                padding-top: 26px;
                 position: relative;
                 width: 100%;
             }
 
                 .video .video_wrapper .video_mid .video_img img {
-                    height: 88.5% !important;
-                    width: 66%;
+                    width: 60%;
                 }
 
             .video .video_wrapper .video_mid .video_img_arrow {
@@ -2978,11 +2980,6 @@ a.more {
         width: auto;
     }
 
-        .video .video_wrapper .video_mid .video_img img {
-            width: 78%;
-            height: 93% !important;
-        }
-
     .footer_main .footer_wrapper {
         width: 94%;
         text-align: center;
@@ -3207,6 +3204,25 @@ a.more {
             padding: 12px 40px 12px 10px;
             font-size: 20px;
             font-weight: bold;
+        }
+
+    .video {
+        padding-top: 8em;
+    }
+
+        .video .video_wrapper .video_mid .video_img {
+            background-size: contain;
+            padding-top: 30px;
+            height: 370px;
+            margin-bottom: 4em;
+        }
+
+    .awards {
+        padding: 3em 1em;
+    }
+
+        .awards ul li img {
+            max-width: 140px;
         }
 }
 
@@ -3668,10 +3684,16 @@ a.more {
             margin-bottom: 0;
         }
 
-    .awards ul li:nth-child(2n) {
-        clear: right;
+    .awards ul li {
         margin-right: 0;
+        margin-bottom: 2em;
+        width: 100%;
+        float: left;
     }
+
+        .awards ul li:last-child {
+            margin-bottom: 0;
+        }
 
     .features-news {
         padding: 0;
