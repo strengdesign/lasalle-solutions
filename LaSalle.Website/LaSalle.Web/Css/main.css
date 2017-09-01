@@ -1064,7 +1064,7 @@ img, object, embed {
                         .footer_main .footer_wrapper .footer_mid .footer_mid2 .footer_nav ul li a {
                             color: #555555;
                             display: block;
-                            margin: 0 20px;
+                            margin: 0 12px;
                             padding: 0 3px;
                             text-decoration: none;
                         }
@@ -2022,8 +2022,8 @@ a.more {
 
             .video .video_wrapper .video_mid h1 {
                 color: #000000;
-                font-size: 44px;
-                margin-bottom: 28px;
+                font-size: 50px;
+                margin-bottom: 29px;
                 font-family: 'Cambria W01';
                 font-weight: 400;
                 font-style: normal;
