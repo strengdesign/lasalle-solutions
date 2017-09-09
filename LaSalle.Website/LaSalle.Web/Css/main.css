@@ -205,6 +205,7 @@ button {
     margin: 0;
     padding: 0.4em 1em;
     text-decoration: none;
+    border-radius: 0;
 }
 
     a.btn:hover,
@@ -214,6 +215,7 @@ button {
     button:hover {
         background-color: #343538;
         text-decoration: none;
+        color: #fff;
     }
 
     input.btn:focus,
@@ -275,6 +277,7 @@ h4 {
     font-size: 1.1em;
 }
 
+p { margin: 15px 0; }
 p + h2,
 p + h3,
 p + h4,
@@ -933,13 +936,14 @@ img, object, embed {
     .contourField .fieldLabel {
         float: left;
         padding-right: 1em;
-        text-align: right;
-        width: 30%;
+        text-align: left;
+        width: 100%;
+        font-weight: normal;
     }
 
     .contourField .form-element {
         float: left;
-        width: 70%;
+        width: 100%;
     }
 
     .contourField .field-validation-error {
@@ -953,7 +957,8 @@ img, object, embed {
 }
 
 .contourNavigation {
-    padding-left: 30%;
+    /*padding-left: 30%;*/
+    text-align: center;
 }
 
 /**** footer ****/
@@ -1499,6 +1504,9 @@ hr {
     margin: 0;
     position: relative;
     text-indent: 2.25em;
+    border: none;
+    padding: 0;
+    font-size: 16px;
 }
 
     .interior-rail .testimonial blockquote:before,
@@ -1524,6 +1532,7 @@ hr {
 
 .interior-rail .testimonial .author {
     color: #1b1b1c;
+    margin: 15px 0;
 }
 
 .interior-shadow {
